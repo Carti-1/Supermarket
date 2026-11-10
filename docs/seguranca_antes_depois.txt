@@ -1,0 +1,136 @@
+REGISTRO DE SEGURANCA - ANTES E DEPOIS
+Projeto: Supermarket Receipt
+Etapa registrada: ANTES da modernizacao
+Data/hora: 10/11/2026 17:52 (America/Sao_Paulo)
+Commit analisado: ff9b330 - chore: subindo projeto base
+Branch: main
+
+RESUMO:
+
+1. Bandit no codigo da aplicacao (src): nenhum alerta encontrado.
+2. Bandit incluindo os testes (src e tests): 7 alertas de baixa severidade. Todos sao
+   sobre o uso de assert no teste existente. O pytest usa assert como forma normal de
+   verificar resultados; esses alertas nao apontam, por si so, uma vulnerabilidade na
+   aplicacao. Foram mantidos no registro para mostrar exatamente o escopo analisado.
+3. pip-audit: nenhuma vulnerabilidade conhecida encontrada nas dependencias declaradas
+   em requirements.txt e nas dependencias que o pip-audit resolveu para elas.
+4. Safety: a politica local excluiu os ambientes virtuais e a analise considerou as 4
+   dependencias declaradas em requirements.txt. O arquivo reportou "No issues found",
+   mas o resumo contabilizou 1 vulnerabilidade ignorada pela politica padrao. Esse item
+   permanece pendente de triagem; nao trate o resultado como zero vulnerabilidades.
+
+IMPORTANTE: os resultados acima sao uma linha de base, nao uma garantia de seguranca
+total. Bandit analisa padroes no codigo Python; pip-audit e Safety analisam dependencias
+conhecidas. Cada ferramenta tem cobertura e limitacoes proprias.
+
+AMBIENTE E ESCOPO
+
+- Python: 3.14.7 (64-bit, Windows)
+- Bandit: 1.9.4
+- pip-audit: 2.10.1
+- Safety: 3.8.1
+- Dependencias declaradas: requirements.txt (pytest, approvaltests,
+  pytest-approvaltests e coverage)
+- Codigo Python analisado pelo Bandit: src/ e tests/
+- Dependencias analisadas pelo pip-audit: requirements.txt, com resolucao das
+  dependencias correspondentes
+- Bandit e pip-audit instalados no ambiente local venv;
+- Safety usa .safety-policy.yml para excluir .venv/** e venv/**.
+
+COMANDOS E RESULTADOS
+
+A. Bandit - codigo da aplicacao
+
+Comando:
+  .\venv\Scripts\bandit.exe -r src
+
+Resultado:
+  133 linhas de codigo analisadas.
+  Nenhum problema identificado.
+  Severidade: 0 alta, 0 media, 0 baixa.
+  Codigo de saida: 0 (execucao concluida sem alertas).
+
+B. Bandit - codigo da aplicacao e testes
+
+Comando:
+  .\venv\Scripts\bandit.exe -r src tests
+
+Resultado:
+  212 linhas de codigo analisadas.
+  7 alertas B101 (assert_used), todos de severidade baixa e confianca alta.
+  Severidade: 0 alta, 0 media, 7 baixa.
+  Codigo de saida: 1 porque o Bandit encontrou alertas; a analise foi concluida.
+
+Locais dos alertas no teste existente:
+  tests/test_supermarket.py:24
+  tests/test_supermarket.py:25
+  tests/test_supermarket.py:26
+  tests/test_supermarket.py:28
+  tests/test_supermarket.py:29
+  tests/test_supermarket.py:30
+  tests/test_supermarket.py:31
+
+Interpretacao da equipe:
+  O Bandit recomenda cuidado com assert porque Python pode remover asserts quando o
+  programa e executado com otimizacao. Neste caso, os asserts estao em testes pytest,
+  onde sao usados para validar o comportamento. O resultado deve ser registrado como
+  alerta de ferramenta no codigo de teste, e nao classificado automaticamente como
+  falha exploravel na aplicacao.
+
+C. pip-audit
+
+Comando:
+  .\venv\Scripts\pip-audit.exe -r requirements.txt --cache-dir venv/.cache/pip-audit
+
+Resultado:
+  No known vulnerabilities found.
+  Nenhuma vulnerabilidade conhecida encontrada nas dependencias analisadas.
+  Codigo de saida: 0.
+
+
+D. Safety - execucao registrada com politica local
+
+Politica criada em .safety-policy.yml:
+  version: "3.0"
+  scanning-settings:
+    exclude:
+      - .venv/**
+      - venv/**
+
+O que a politica faz:
+  O Safety 3 procura arquivos de dependencias e ambientes Python dentro do alvo indicado.
+  A politica local instrui a ferramenta a ignorar as pastas .venv e venv, que contem
+  pacotes instalados para os ambientes de trabalho. Assim, a analise deste projeto foca
+  nas dependencias declaradas em requirements.txt e nao nos pacotes internos dos ambientes.
+  O arquivo .safety-policy.yml deve permanecer na raiz do projeto para que a execucao
+  aplique essas exclusoes.
+
+Comando executado:
+  .\.venv\Scripts\safety.exe scan --target .
+
+Resultado (10/11/2026, aproximadamente 18:13, America/Sao_Paulo):
+  Safety 3.8.1 confirmou o uso da politica local.
+  Encontrou 1 arquivo de requisitos e testou 4 dependencias.
+  requirements.txt: No issues found.
+  Resumo: 1 vulnerabilidade encontrada, 1 ignorada pela politica padrao; 0 correcoes
+  sugeridas; codigo de saida 0.
+  As pastas .venv e venv nao aparecem como ambientes ou fontes da analise.
+
+Interpretacao e limitacao:
+  O codigo de saida 0 nao significa que nao ha vulnerabilidades: o resumo mostra um item
+  ignorado. A saida nao identificou a origem/ID desse item, entao ele permanece pendente
+  de triagem no relatorio detalhado ou painel do Safety. Os avisos AuthlibDeprecationWarning
+  sobre dependencias internas da CLI sao avisos de execucao, nao resultados da analise.
+COMO COMPARAR COM A ETAPA DEPOIS
+
+Depois das alteracoes no codigo e nas dependencias, repetir os mesmos comandos e
+registrar abaixo os novos resultados, mantendo a linha de base acima intacta. Comparar:
+
+- alertas novos, resolvidos ou que permaneceram;
+- severidade e local de cada alerta;
+- mudancas nas dependencias e vulnerabilidades conhecidas;
+- limitacoes de ferramenta ou autenticacao;
+- justificativa para cada alerta nao corrigido.
+
+Nao altere esta secao de linha de base. Acrescente uma nova secao intitulada
+"DEPOIS DA MODERNIZACAO" para os resultados futuros.
