@@ -1,5 +1,18 @@
-venv
+# Ambientes virtuais
+venv/
 .venv/
-.pytest_cache
-__pycache__
-.idea
+
+# Cache e arquivos temporarios do Python e pytest
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.approval_tests_temp/
+
+# Relatorios do coverage
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+
+# Configuracoes locais de IDE
+.idea/
