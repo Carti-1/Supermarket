@@ -8,12 +8,17 @@ from interfaces import (
     ReceiptReaderPort,
     ReceiptWriterPort,
     ShoppingCartPort,
+    OfferResult,
+    OfferStrategyPort
 )
 from model_objects import Discount, Offer, Product, ProductQuantity, ProductUnit
 from receipt import Receipt
 from shopping_cart import ShoppingCart
 from teller import Teller
 from tests.fake_catalog import FakeCatalog
+
+import dataclasses
+import pytest
 
 
 def test_fake_catalog_implementa_as_portas_de_leitura_e_escrita():
@@ -94,3 +99,18 @@ def test_caixa_aceita_carrinho_estrutural_compativel_com_o_contrato():
     assert isinstance(carrinho, ShoppingCartPort)
     assert recibo.total_price() == 3.5
     assert recibo.discounts[0].discount_amount == -0.5
+
+def test_resultado_de_oferta_e_imutavel():
+    produto = Product("sabonete", ProductUnit.EACH)
+    resultado = OfferResult(Discount(produto, "Desconto de teste", -1.0), 3.0)
+
+    with pytest.raises(dataclasses.FrozenInstanceError):
+        resultado.reserved_quantity = 0.0
+
+
+def test_estrategia_estrutural_cumpre_o_contrato_de_oferta():
+    class EstrategiaDeTeste:
+        def apply(self, offer, quantity, unit_price):
+            return OfferResult(None, 0.0)
+
+    assert isinstance(EstrategiaDeTeste(), OfferStrategyPort)
