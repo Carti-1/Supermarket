@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping, Sequence
+from dataclasses import dataclass
 from typing import Protocol, runtime_checkable
 
 from model_objects import Combo, Discount, Offer, Product, ProductQuantity
@@ -122,4 +123,20 @@ class ComboPromotionPort(Protocol):
         que o compõem. A sequência define a prioridade entre combos diferentes;
         quantidades excedentes permanecem disponíveis e não recebem desconto por si.
         """
+        ...
+
+@dataclass(frozen=True)
+class OfferResult:
+    """Resultado de uma oferta antiga: desconto (ou None) e unidades que ela consumiu."""
+
+    discount: Discount | None
+    reserved_quantity: float
+
+
+@runtime_checkable
+class OfferStrategyPort(Protocol):
+    """Regra de cálculo de UM tipo de oferta antiga, para UM produto."""
+
+    def apply(self, offer: Offer, quantity: float, unit_price: float) -> OfferResult:
+        """Calcula o desconto (negativo) e as unidades reservadas; não altera nada."""
         ...
