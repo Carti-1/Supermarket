@@ -1,0 +1,1 @@
+#O arquivo __init__.py dentro de offers/ diz ao Python que a pasta é um pacote. Só serve de marcador.
