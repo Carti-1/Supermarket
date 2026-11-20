@@ -100,6 +100,7 @@ def test_caixa_aceita_carrinho_estrutural_compativel_com_o_contrato():
     assert recibo.total_price() == 3.5
     assert recibo.discounts[0].discount_amount == -0.5
 
+
 def test_resultado_de_oferta_e_imutavel():
     produto = Product("sabonete", ProductUnit.EACH)
     resultado = OfferResult(Discount(produto, "Desconto de teste", -1.0), 3.0)
@@ -114,3 +115,4 @@ def test_estrategia_estrutural_cumpre_o_contrato_de_oferta():
             return OfferResult(None, 0.0)
 
     assert isinstance(EstrategiaDeTeste(), OfferStrategyPort)
+    
