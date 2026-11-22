@@ -125,6 +125,7 @@ class ComboPromotionPort(Protocol):
         """
         ...
 
+
 @dataclass(frozen=True)
 class OfferResult:
     """Resultado de uma oferta antiga: desconto (ou None) e unidades que ela consumiu."""
