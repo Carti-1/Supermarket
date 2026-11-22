@@ -60,7 +60,7 @@ Regras que **não podem mudar** com a refatoração. Cada uma é verificada por 
 | INV-04 | **5 por valor fixo:** a cada grupo de 5, cobra o valor fixo; o resto paga preço cheio | RF01–RF04 | idem |
 | INV-05 | Carrinho sem oferta: total = preço × quantidade, sem descontos | RF05 | testes de caracterização |
 | INV-06 | O valor do desconto é sempre registrado como **negativo**, e **total = soma dos itens + soma dos descontos** | RF06 | testes de caracterização |
-| INV-07 | Os **textos das descrições** de desconto (ex.: "3 por 2", "… % off", "2 for …", "5 for …") são mantidos como estão hoje | RF06 | testes de caracterização; approval do recibo |
+| INV-07 | Os **textos das descrições** de desconto (ex.: "3 for 2", "… % off", "2 for …", "5 for …") são mantidos como estão hoje | RF06 | testes de caracterização; approval do recibo |
 | INV-08 | O **recibo impresso** é idêntico ao aprovado antes da refatoração | RF06 | `tests/test_recibo_impresso.py` + `tests/approved_files/` (Heitor; pendente de integração em 22/11) |
 | INV-09 | Um mesmo conjunto de itens **nunca recebe dois descontos** (oferta legada + combo) | RF11 | `tests/test_combos.py` (D1) |
 
