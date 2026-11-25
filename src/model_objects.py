@@ -5,23 +5,31 @@ from enum import Enum
 
 
 class Product:
+    """Produto vendido. Comparado por identidade: o carrinho e as ofertas o usam como chave."""
+
     def __init__(self, name: str, unit: ProductUnit) -> None:
         self.name = name
         self.unit = unit
 
 
 class ProductQuantity:
+    """Uma linha adicionada ao carrinho: produto e quantidade (unidades ou quilos)."""
+
     def __init__(self, product: Product, quantity: float) -> None:
         self.product = product
         self.quantity = quantity
 
 
 class ProductUnit(Enum):
+    """Forma de venda: por unidade (EACH) ou por peso (KILO)."""
+
     EACH = 1
     KILO = 2
 
 
 class SpecialOfferType(Enum):
+    """Os quatro tipos de oferta do legado (RF01 a RF04)."""
+
     THREE_FOR_TWO = 1
     TEN_PERCENT_DISCOUNT = 2
     TWO_FOR_AMOUNT = 3
@@ -29,6 +37,8 @@ class SpecialOfferType(Enum):
 
 
 class Offer:
+    """Oferta antiga cadastrada para um produto; argument depende do tipo."""
+
     def __init__(
         self,
         offer_type: SpecialOfferType,
@@ -41,6 +51,8 @@ class Offer:
 
 
 class Discount:
+    """Linha de desconto do recibo; discount_amount é negativo quando reduz o total."""
+
     def __init__(
         self,
         product: Product,
