@@ -47,13 +47,12 @@ class Teller:
         calculador de combos as quantidades que essas ofertas deixaram disponíveis.
         """
         receipt = Receipt()
-        product_quantities = the_cart.items
-        for pq in product_quantities:
-            p = pq.product
-            quantity = pq.quantity
-            unit_price = self.catalog.unit_price(p)
+        for item in the_cart.items:
+            product = item.product
+            quantity = item.quantity
+            unit_price = self.catalog.unit_price(product)
             price = quantity * unit_price
-            receipt.add_product(p, quantity, unit_price, price)
+            receipt.add_product(product, quantity, unit_price, price)
 
         available_quantities = the_cart.handle_offers(
             receipt,
