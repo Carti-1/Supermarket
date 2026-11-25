@@ -15,7 +15,8 @@ class ThreeForTwoStrategy:
         groups = whole_units // 3
         charge = groups * 2 * unit_price + whole_units % 3 * unit_price
         amount = quantity * unit_price - charge
-        return OfferResult(Discount(offer.product, "3 por 2", -amount), groups * 3)
+        return OfferResult(Discount(offer.product, "3 for 2", -amount), groups * 3)
+
 
 class PercentDiscountStrategy:
     """Desconto percentual sobre toda a quantidade do produto."""

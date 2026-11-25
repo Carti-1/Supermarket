@@ -57,7 +57,7 @@ def test_tres_por_dois(quantidade, desconto, reservado):
 
 def test_tres_por_dois_descricao():
     oferta = _oferta(SpecialOfferType.THREE_FOR_TWO)
-    assert ThreeForTwoStrategy().apply(oferta, 3, PRECO).discount.description == "3 por 2"
+    assert ThreeForTwoStrategy().apply(oferta, 3, PRECO).discount.description == "3 for 2"
 
 
 @pytest.mark.parametrize("quantidade, desconto", [(1, -1.0), (3, -3.0)])
