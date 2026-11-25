@@ -107,9 +107,9 @@ python -m pytest -q
 
 O `pytest.ini` já adiciona `src/` e `tests/` ao caminho de importação, então não é preciso configurar nada.
 
-**Resultado esperado:** todos os testes aprovados.
+**Resultado esperado (25/11/2026):** `116 passed`, sem falhas e sem `xfail`.
 
-> ⚠️ **Atualizar na entrega final** com o número exato (ex.: `NN passed`). Até a integração do combo, a suíte mostra 4 `xfailed`, que são os testes de combo em fase vermelha (TDD).
+Os testes de combo foram escritos antes da implementação (TDD) e ficaram marcados como `xfail(strict=True)`. Quando o `Teller` passou a aplicar combos por padrão, eles passaram (`XPASS(strict)`) e a marcação foi removida.
 
 Rodar um grupo específico:
 
@@ -130,7 +130,7 @@ python -m coverage run -m pytest -q
 python -m coverage report -m
 ```
 
-> ⚠️ **Conferir com o Heitor** os comandos e o resultado registrados em `docs/evidencias_testes`.
+O relatório de cobertura e as evidências de execução ficam em `docs/evidencias_testes` e `docs/evidencias/`.
 
 ---
 
@@ -150,7 +150,7 @@ python -m pip install bandit pip-audit safety
 | pip-audit | Vulnerabilidades conhecidas nas dependências | `python -m pip_audit -r requirements.txt` |
 | Safety | Vulnerabilidades conhecidas nas dependências (usa `.safety-policy.yml`) | `safety scan` |
 
-> ⚠️ **Conferir com o João** os comandos exatos de pip-audit e Safety usados no relatório.
+Os comandos exatos, as versões das ferramentas e os resultados de cada execução estão registrados em [`docs/seguranca_antes_depois.txt`](docs/seguranca_antes_depois.txt).
 
 **Observações:**
 - Os alertas do Bandit em `tests/` são `B101 (assert_used)`, esperados em testes com pytest, e não indicam vulnerabilidade da aplicação.
@@ -177,7 +177,7 @@ Supermarket/
 │   └── offers/
 │       ├── legacy_strategies.py # Strategy: uma classe por oferta legada
 │       ├── offer_factory.py     # Factory: escolhe a estratégia pelo tipo de oferta
-│       └── combo_promotion.py   # cálculo dos combos promocionais
+│       └── combo_promotion.py   # Combos: 10% sobre conjuntos completos
 ├── tests/
 │   ├── test_supermarket.py           # testes originais do kata (não editados)
 │   ├── test_comportamento_legado.py  # testes de caracterização
@@ -191,8 +191,6 @@ Supermarket/
 ├── docs/                        # diagnóstico, requisitos, plano, padrões, segurança, evidências
 └── apresentacao/                # slides da defesa
 ```
-
-> ⚠️ **Conferir na entrega final** se todos os arquivos listados existem (por exemplo, `combo_promotion.py` e os testes de recibo impresso).
 
 ---
 
@@ -212,6 +210,9 @@ Supermarket/
 - **D1, convivência de ofertas:** as ofertas legadas são aplicadas primeiro e o combo usa só as unidades que sobraram, para não dar desconto duplicado.
 - **D4, busca por nome:** o catálogo ganhou `product_by_name`, e o `Teller` deixou de depender de um atributo interno do catálogo de testes (LSP).
 - **D7, combos sobrepostos:** a ordem de cadastro dos combos define a prioridade.
+- **D2, produtos por quilo em combos:** contam só combos inteiros (1,5 kg exigindo 1,0 kg forma 1 combo).
+- **D3, defeito legado do "2 for X":** mantido de propósito, para preservar o comportamento existente.
+- **D6, linha do combo no recibo:** impressa como "10% combo (nome do combo)".
 - **Interfaces públicas preservadas:** `Teller(catalog)`, `checks_out_articles_from`, `ShoppingCart.add_item`… continuam com as mesmas assinaturas. As mudanças compatíveis estão justificadas no plano de contingência.
 
 Detalhes, diagramas e trechos antes/depois estão nos documentos da seção 9.
@@ -224,15 +225,15 @@ Tudo em [`docs/`](docs/):
 
 | Documento | Conteúdo |
 |---|---|
+| [`requisitos.md`](docs/requisitos.md) | Requisitos RF/RNF com critérios de aceitação (inclui combos) |
+| [`plano_contingencia.md`](docs/plano_contingencia.md) | Sequência das mudanças, invariantes, interfaces congeladas, riscos, reversão e decisões |
+| [`seguranca_antes_depois.txt`](docs/seguranca_antes_depois.txt) | Bandit, pip-audit e Safety: comandos, versões, triagem e comparação |
+| [`evidencias/`](docs/evidencias/) | Logs brutos das execuções (caracterização antes/depois) |
 | `diagnostico_tecnico` | Code smells, riscos e evidências no código legado |
-| `requisitos` | Requisitos RF/RNF com critérios de aceitação (inclui combos) |
-| `plano_contingencia` | Sequência das mudanças, invariantes, interfaces congeladas, riscos e reversão |
 | `padroes_projeto` | Strategy e Factory: problema, diagrama, trechos antes/depois, SOLID |
-| `seguranca_antes_depois` | Bandit, pip-audit e Safety: comandos, versões, triagem e comparação |
 | `evidencias_testes` | Execução dos testes antes/depois, cobertura e rastreabilidade |
-| `evidencias/` | Logs brutos das execuções |
 
-> ⚠️ **Na entrega final**, trocar os nomes acima por links para os arquivos reais (`.md` ou `.pdf`).
+Os documentos sem link são integrados pelos respectivos responsáveis na entrega final.
 
 ---
 
@@ -251,12 +252,10 @@ Tudo em [`docs/`](docs/):
 | Integrante | Responsabilidade principal |
 |---|---|
 | Heitor | Testes de caracterização, recibo, evidências de teste |
-| João | Contratos (interfaces), diagnóstico técnico, análises de segurança |
+| João Pedro | Contratos (interfaces), diagnóstico técnico, análises de segurança |
 | Lucca | Requisitos e combos promocionais |
-| Matheus Sobral | Fábrica de estratégias, integração no `Teller`, plano de contingência, README |
-| Pedro | Estratégias de oferta, carrinho, padrões de projeto, coordenação da integração |
-
-> ⚠️ Completar com os nomes completos.
+| Matheus Sobral Imbassahy Cruz | Fábrica de estratégias, integração dos combos no `Teller`, plano de contingência, README |
+| Pedro Prietto | Estratégias de oferta, carrinho, padrões de projeto, coordenação da integração |
 
 ---
 
