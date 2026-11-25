@@ -5,6 +5,7 @@ from interfaces import (
     ShoppingCartPort,
 )
 from model_objects import Combo, Offer, Product, SpecialOfferType
+from offers.combo_promotion import ComboPromotion
 from receipt import Receipt
 
 
@@ -17,11 +18,13 @@ class Teller:
     ) -> None:
         """Monta o caixa com dependências substituíveis para facilitar testes.
 
-        O calculador de combos é opcional nesta etapa para manter compatibilidade
-        com o comportamento atual enquanto sua implementação fica a cargo da equipe.
+        Sem injeção, o caixa usa o ComboPromotion real, então Teller(catalog)
+        já aplica combos. Os testes ainda podem passar um dublê (DIP).
         """
         self.catalog = catalog
-        self.combo_promotion = combo_promotion
+        self.combo_promotion = (
+            combo_promotion if combo_promotion is not None else ComboPromotion()
+        )
         self.offers: dict[Product, Offer] = {}
         self.combo_offers: list[Combo] = []
 
@@ -60,7 +63,7 @@ class Teller:
             self.catalog,
         )
 
-        if self.combo_promotion is not None and self.combo_offers:
+        if self.combo_offers:
             combo_discounts = self.combo_promotion.calculate_discounts(
                 self.combo_offers,
                 available_quantities,
