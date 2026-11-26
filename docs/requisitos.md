@@ -133,4 +133,4 @@ O catálogo ganhou `product_by_name`; `Teller.product_with_name` deixou de ler u
 
 ## 6. Situação da integração
 
-O `Teller` já aceita o cálculo de combos por injeção (`Teller(catalogo, combo_promotion=ComboPromotion())`) e todos os cenários acima passam assim. Os 4 testes em `xfail` de `test_combos.py` usam `Teller(catalogo)` sem injeção: eles passam a verde quando o `Teller` usar o `ComboPromotion` por padrão e os marcadores `xfail` forem removidos (etapa 9 do plano de contingência).
+O `Teller` usa o `ComboPromotion` por padrão (PR #14): `Teller(catalogo)` já aplica combos, sem precisar injetar o calculador; a injeção continua possível para testes com dublê. Os 4 testes que estavam em `xfail(strict=True)` em `test_combos.py` passaram (`XPASS(strict)`) e os marcadores foram removidos. Suíte final: **116 passed, 0 xfail** (evidências em `docs/evidencias_testes.md`).
