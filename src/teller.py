@@ -5,6 +5,7 @@ from interfaces import (
     ShoppingCartPort,
 )
 from model_objects import Combo, Offer, Product, SpecialOfferType
+from offers.combo_promotion import ComboPromotion
 from receipt import Receipt
 
 
@@ -17,11 +18,13 @@ class Teller:
     ) -> None:
         """Monta o caixa com dependências substituíveis para facilitar testes.
 
-        O calculador de combos é opcional nesta etapa para manter compatibilidade
-        com o comportamento atual enquanto sua implementação fica a cargo da equipe.
+        Sem injeção, o caixa usa o ComboPromotion real, então Teller(catalog)
+        já aplica combos. Os testes ainda podem passar um dublê (DIP).
         """
         self.catalog = catalog
-        self.combo_promotion = combo_promotion
+        self.combo_promotion = (
+            combo_promotion if combo_promotion is not None else ComboPromotion()
+        )
         self.offers: dict[Product, Offer] = {}
         self.combo_offers: list[Combo] = []
 
@@ -47,13 +50,12 @@ class Teller:
         calculador de combos as quantidades que essas ofertas deixaram disponíveis.
         """
         receipt = Receipt()
-        product_quantities = the_cart.items
-        for pq in product_quantities:
-            p = pq.product
-            quantity = pq.quantity
-            unit_price = self.catalog.unit_price(p)
+        for item in the_cart.items:
+            product = item.product
+            quantity = item.quantity
+            unit_price = self.catalog.unit_price(product)
             price = quantity * unit_price
-            receipt.add_product(p, quantity, unit_price, price)
+            receipt.add_product(product, quantity, unit_price, price)
 
         available_quantities = the_cart.handle_offers(
             receipt,
@@ -61,7 +63,7 @@ class Teller:
             self.catalog,
         )
 
-        if self.combo_promotion is not None and self.combo_offers:
+        if self.combo_offers:
             combo_discounts = self.combo_promotion.calculate_discounts(
                 self.combo_offers,
                 available_quantities,

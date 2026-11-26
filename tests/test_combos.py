@@ -49,10 +49,6 @@ def test_combo_rejeita_definicoes_sem_composicao_valida(nome, composicao):
         Combo(nome, composicao)
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="O cálculo promocional de combos será implementado na próxima etapa.",
-)
 def test_combo_completo_aplica_dez_por_cento_somente_aos_itens_do_combo():
     """Exige 10% de desconto em R$ 25,00 quando os dois produtos estão presentes."""
     escova, creme_dental, caixa, carrinho = _preparar_checkout()
@@ -107,10 +103,6 @@ def test_caixa_entrega_ao_calculador_somente_quantidades_restantes():
     assert recibo.total_price() == pytest.approx(44.0)
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="O cálculo promocional de combos será implementado na próxima etapa.",
-)
 def test_dois_conjuntos_completos_recebem_dois_descontos():
     """Exige um desconto por cada repetição completa da mesma composição."""
     escova, creme_dental, caixa, carrinho = _preparar_checkout()
@@ -126,10 +118,6 @@ def test_dois_conjuntos_completos_recebem_dois_descontos():
     )
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="O cálculo promocional de combos será implementado na próxima etapa.",
-)
 def test_produto_excedente_fica_fora_do_desconto_do_combo():
     """Desconta um combo e mantém a segunda escova pelo preço normal."""
     escova, creme_dental, caixa, carrinho = _preparar_checkout()
@@ -143,10 +131,6 @@ def test_produto_excedente_fica_fora_do_desconto_do_combo():
     assert recibo.discounts[0].discount_amount == pytest.approx(-2.5)
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="A alocação entre ofertas antigas e combos será implementada na próxima etapa.",
-)
 def test_oferta_antiga_tem_prioridade_e_combo_usa_somente_excedentes():
     """Evita reutilizar no combo as três escovas alocadas à oferta 3 por 2."""
     escova, creme_dental, caixa, carrinho = _preparar_checkout()
@@ -164,8 +148,8 @@ def test_oferta_antiga_tem_prioridade_e_combo_usa_somente_excedentes():
 
 # ---------------------------------------------------------------------------
 # Cenários pelo caixa com o ComboPromotion injetado (Lucca).
-# Os testes xfail acima usam Teller(catalogo) sem injeção e continuam vermelhos
-# até o Teller passar a usar o ComboPromotion por padrão (tarefa do Matheus).
+# Os testes acima usam Teller(catalogo) sem injeção: desde que o Teller passou a
+# usar o ComboPromotion por padrão, eles cobrem o mesmo cálculo pelo caminho normal.
 # Valores calculados à mão: escova R$ 10,00, creme R$ 15,00, fio R$ 5,00.
 # ---------------------------------------------------------------------------
 
