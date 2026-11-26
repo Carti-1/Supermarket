@@ -1,0 +1,42 @@
+C:\Users\Pedro\Documents\VsCode\Supermarket\.venv\Lib\site-packages\safety\auth\main.py:5: AuthlibDeprecationWarning: authlib.jose module is deprecated, please use joserfc instead.
+It will be compatible before version 2.0.0.
+  from authlib.jose.errors import ExpiredTokenError
+C:\Users\Pedro\Documents\VsCode\Supermarket\.venv\Lib\site-packages\authlib\integrations\httpx_client\assertion_client.py:5: AuthlibDeprecationWarning: The httpx module is deprecated; please use httpx2 instead.
+  from ._compat import httpx2
+Safety 3.8.1 scanning C:\Users\Pedro\Documents\VsCode\Supermarket
+2026-11-26 01:27:45 UTC
+
+Account: [dados pessoais removidos]
+Project: supermarket
+ Git branch: docs/seguranca-depois
+ Environment: Stage.development
+ Scan policy: fetched from Safety Platform, ignoring any local Safety CLI 
+policy files
+
+Python detected. Found 1 Python requirement file, 2 Python environments and 4 
+Python pyproject.toml files
+
++ requirements.txt: No issues found.
+
++ venv\pyvenv.cfg: No issues found.
+
++ .venv\pyvenv.cfg: No issues found.
+
++ .venv\Lib\site-packages\stevedore\example2\pyproject.toml: No issues found.
+
++ .venv\Lib\site-packages\stevedore\example\pyproject.toml: No issues found.
+
++ venv\Lib\site-packages\stevedore\example2\pyproject.toml: No issues found.
+
++ venv\Lib\site-packages\stevedore\example\pyproject.toml: No issues found.
+
+Tested 152 dependencies for security issues using policy fetched from Safety 
+Platform
+29 vulnerabilities found, 29 ignored due to policy.
+0 fixes suggested, resolving 0 vulnerabilities.
+
+Project dashboard: 
+https://platform.safetycli.com/codebases/supermarket/findings?branch=docs/segur
+anca-depois
+No scan-failing vulnerabilities were matched, returning success exit code: 0
+

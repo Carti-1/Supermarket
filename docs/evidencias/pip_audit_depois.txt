@@ -1,0 +1,5 @@
+FERRAMENTA: pip-audit 2.10.1
+COMANDO: .\venv\Scripts\pip-audit.exe -r requirements.txt --cache-dir venv/.cache/pip-audit
+CODIGO DE SAIDA: 0
+
+No known vulnerabilities found
