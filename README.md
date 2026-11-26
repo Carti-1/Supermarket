@@ -130,7 +130,7 @@ python -m coverage run -m pytest -q
 python -m coverage report -m
 ```
 
-O relatório de cobertura e as evidências de execução ficam em `docs/evidencias_testes` e `docs/evidencias/`.
+**Resultado (25/11/2026):** 99% no total (840 statements, 10 não cobertos) e 98,5% só em `src/`. As linhas não cobertas e a análise estão em [`docs/evidencias_testes.md`](docs/evidencias_testes.md).
 
 ---
 
@@ -144,17 +144,17 @@ Instalação local (fora do `requirements.txt`):
 python -m pip install bandit pip-audit safety
 ```
 
-| Ferramenta | O que analisa | Comando |
-|---|---|---|
-| Bandit | Padrões inseguros no código Python | `python -m bandit -r src` e `python -m bandit -r src tests` |
-| pip-audit | Vulnerabilidades conhecidas nas dependências | `python -m pip_audit -r requirements.txt` |
-| Safety | Vulnerabilidades conhecidas nas dependências (usa `.safety-policy.yml`) | `safety scan` |
+| Ferramenta | O que analisa | Comando | Antes → depois |
+|---|---|---|---|
+| Bandit | Padrões inseguros no código Python | `bandit -r src` e `bandit -r src tests` | `src/`: 0 → 0 alertas · com `tests/`: 7 → 113 B101 (`assert` de teste) |
+| pip-audit | Vulnerabilidades conhecidas nas dependências | `pip-audit -r requirements.txt` | 0 → 0 |
+| Safety | Vulnerabilidades conhecidas nas dependências | `safety scan --target .` | 0 em `requirements.txt`; itens ignorados pela política triados no relatório |
 
 Os comandos exatos, as versões das ferramentas e os resultados de cada execução estão registrados em [`docs/seguranca_antes_depois.txt`](docs/seguranca_antes_depois.txt).
 
 **Observações:**
 - Os alertas do Bandit em `tests/` são `B101 (assert_used)`, esperados em testes com pytest, e não indicam vulnerabilidade da aplicação.
-- O Safety pode exigir login ou conta. As tentativas e as limitações estão registradas no relatório.
+- O Safety exige conta no Safety Platform, e a política na nuvem sobrepõe o `.safety-policy.yml` local. Os detalhes estão no relatório.
 - Ausência de alertas não é prova de segurança total: cada ferramenta tem cobertura própria.
 
 ---
@@ -225,15 +225,13 @@ Tudo em [`docs/`](docs/):
 
 | Documento | Conteúdo |
 |---|---|
-| [`requisitos.md`](docs/requisitos.md) | Requisitos RF/RNF com critérios de aceitação (inclui combos) |
+| [`diagnostico_tecnico.md`](docs/diagnostico_tecnico.md) | Code smells, riscos e evidências no código legado; complexidade com Radon |
+| [`requisitos.md`](docs/requisitos.md) | Requisitos RF/RNF com critérios de aceitação e decisões D1–D7 (inclui combos) |
 | [`plano_contingencia.md`](docs/plano_contingencia.md) | Sequência das mudanças, invariantes, interfaces congeladas, riscos, reversão e decisões |
+| [`padroes_projeto.txt`](docs/padroes_projeto.txt) | Strategy e Factory: problema, diagrama, trechos antes/depois, SOLID e arquitetura |
 | [`seguranca_antes_depois.txt`](docs/seguranca_antes_depois.txt) | Bandit, pip-audit e Safety: comandos, versões, triagem e comparação |
-| [`evidencias/`](docs/evidencias/) | Logs brutos das execuções (caracterização antes/depois) |
-| `diagnostico_tecnico` | Code smells, riscos e evidências no código legado |
-| `padroes_projeto` | Strategy e Factory: problema, diagrama, trechos antes/depois, SOLID |
-| `evidencias_testes` | Execução dos testes antes/depois, cobertura e rastreabilidade |
-
-Os documentos sem link são integrados pelos respectivos responsáveis na entrega final.
+| [`evidencias_testes.md`](docs/evidencias_testes.md) | Execução dos testes antes/depois, cobertura e rastreabilidade |
+| [`evidencias/`](docs/evidencias/) | Logs brutos: caracterização, pytest, cobertura, Radon e Safety |
 
 ---
 
