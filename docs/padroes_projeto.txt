@@ -1,0 +1,260 @@
+# Padrões de Projeto, SOLID e Arquitetura
+
+Este documento explica **quais padrões de projeto foram aplicados**, **por que** foram escolhidos, **onde** estão no código e **como os testes provam** que nada mudou no comportamento. Os números de linha se referem à branch `develop` no momento da entrega.
+
+## Sumário
+
+1. [O problema no código original](#1-o-problema-no-código-original)
+2. [Padrão Strategy](#2-padrão-strategy)
+3. [Padrão Factory](#3-padrão-factory)
+4. [Como os dois padrões trabalham juntos](#4-como-os-dois-padrões-trabalham-juntos)
+5. [Princípios SOLID no projeto](#5-princípios-solid-no-projeto)
+6. [Arquitetura Limpa](#6-arquitetura-limpa)
+7. [Evidências](#7-evidências)
+
+---
+
+## 1. O problema no código original
+
+Todo o cálculo de descontos estava em um único método, `ShoppingCart.handle_offers` (`src/shopping_cart.py`, linhas 30–68 do código original):
+
+```python
+def handle_offers(self, receipt, offers, catalog):
+    for p in self._product_quantities.keys():
+        ...
+        x = 1
+        if offer.offer_type == SpecialOfferType.THREE_FOR_TWO:
+            x = 3
+        elif offer.offer_type == SpecialOfferType.TWO_FOR_AMOUNT:
+            x = 2
+            ...
+        if offer.offer_type == SpecialOfferType.FIVE_FOR_AMOUNT:
+            x = 5
+        ...
+        if offer.offer_type == SpecialOfferType.THREE_FOR_TWO and quantity_as_int > 2:
+            ...
+        if offer.offer_type == SpecialOfferType.TEN_PERCENT_DISCOUNT:
+            ...
+        if offer.offer_type == SpecialOfferType.FIVE_FOR_AMOUNT and quantity_as_int >= 5:
+            ...
+```
+
+| Problema | Consequência |
+|---|---|
+| Uma cadeia de `if/elif` por tipo de oferta | Cada oferta nova obriga a editar este método, mexendo em regras que já funcionavam |
+| O carrinho guarda os itens **e** calcula os descontos | Duas razões diferentes para a classe mudar |
+| Nomes `p`, `x`, `number_of_x` e números mágicos `2`, `3`, `5` | A regra de negócio fica escondida |
+| Fórmulas quase iguais repetidas | Uma correção precisa ser feita em vários lugares |
+| Complexidade ciclomática **C (13)** no Radon | Muitos caminhos de execução: difícil de testar e de manter |
+
+---
+
+## 2. Padrão Strategy
+
+**Intenção:** encapsular cada algoritmo (aqui, cada regra de oferta) em uma classe própria, com uma interface comum, para que eles possam ser trocados sem que quem os usa precise saber qual é.
+
+### 2.1 O contrato
+
+`src/interfaces.py`, linhas 129–142:
+
+```python
+@dataclass(frozen=True)
+class OfferResult:
+    discount: Discount | None
+    reserved_quantity: float
+
+
+@runtime_checkable
+class OfferStrategyPort(Protocol):
+    def apply(self, offer: Offer, quantity: float, unit_price: float) -> OfferResult:
+        ...
+```
+
+- **`OfferStrategyPort`** é a interface comum. Ela foi feita com `Protocol` (tipagem **estrutural**): uma classe cumpre o contrato só por ter o método `apply` com essa forma, sem precisar herdar de nada.
+- **`OfferResult`** devolve duas informações: o **desconto** e a **quantidade reservada**. A reserva é o que sobra para o combo, e é por meio dela que se evita aplicar dois descontos à mesma unidade.
+- **`frozen=True`** torna o resultado imutável. Por isso a constante `NO_DISCOUNT` pode ser um único objeto compartilhado por todas as estratégias sem risco de alguém alterá-lo.
+
+### 2.2 As estratégias concretas
+
+`src/offers/legacy_strategies.py`, uma classe por regra:
+
+| Classe | Regra | Reserva |
+|---|---|---|
+| `ThreeForTwoStrategy` | Leve 3, pague 2 | grupos de 3 |
+| `PercentDiscountStrategy` | Percentual sobre toda a quantidade | toda a quantidade |
+| `TwoForAmountStrategy` | 2 por um valor fixo | pares |
+| `FiveForAmountStrategy` | 5 por um valor fixo | grupos de 5 |
+
+As fórmulas foram **copiadas do legado sem alterações**, inclusive o defeito D3 (divisão real `/` no "2 por X", documentado em `docs/requisitos.md`). Refatorar muda a estrutura, não o resultado.
+
+### 2.3 Por que 2 por X e 5 por X não viraram uma classe só
+
+As duas regras parecem iguais, mas não são: a de 2 usa `/` (defeito D3) e a de 5 usa grupos inteiros. Unificar mudaria o resultado com quantidades ímpares. Isso só pode acontecer se o defeito for corrigido, em um commit `fix:` separado e aprovado.
+
+---
+
+## 3. Padrão Factory
+
+**Intenção:** concentrar em um único lugar a decisão de **qual objeto criar**.
+
+### 3.1 O problema que ele resolve
+
+Com as estratégias criadas, alguém ainda precisa responder "para o tipo `THREE_FOR_TWO`, qual classe uso?". Se essa decisão ficar no carrinho, a cadeia de `if/elif` volta.
+
+### 3.2 A solução
+
+`src/offers/offer_factory.py`:
+
+```python
+DEFAULT_REGISTRY = {
+    SpecialOfferType.THREE_FOR_TWO: ThreeForTwoStrategy,
+    SpecialOfferType.TEN_PERCENT_DISCOUNT: PercentDiscountStrategy,
+    SpecialOfferType.TWO_FOR_AMOUNT: TwoForAmountStrategy,
+    SpecialOfferType.FIVE_FOR_AMOUNT: FiveForAmountStrategy,
+}
+
+
+class OfferStrategyFactory:
+    def __init__(self, registry=None):
+        source = DEFAULT_REGISTRY if registry is None else registry
+        self._registry = dict(source)
+
+    def create(self, offer_type):
+        try:
+            strategy_class = self._registry[offer_type]
+        except KeyError:
+            raise ValueError(f"Tipo de oferta sem estratégia registrada: {offer_type}") from None
+        return strategy_class()
+```
+
+- **Um dicionário no lugar de `if/elif`:** uma oferta nova é **uma linha nova no registro**.
+- **Registro injetável:** os testes passam estratégias falsas (*stubs*) e testam a fábrica sem depender das regras reais.
+- **`dict(source)`** faz uma cópia defensiva: alterar o dicionário original depois não afeta a fábrica.
+- **Tipo desconhecido** gera uma mensagem de erro do domínio, em vez de um `KeyError` genérico.
+
+### 3.3 Nomenclatura
+
+Rigorosamente, esta é uma **Simple Factory** (ou fábrica parametrizada): uma classe que escolhe a implementação a partir de um parâmetro. O **Factory Method** do livro GoF é outra coisa: um método de criação que **subclasses sobrescrevem**. O enunciado usa "Factory Method para seleção de estratégias" no sentido amplo. Registramos a diferença para não nomear o padrão de forma imprecisa.
+
+---
+
+## 4. Como os dois padrões trabalham juntos
+
+`src/shopping_cart.py`, linhas 42–60:
+
+```python
+def handle_offers(self, receipt, offers, catalog):
+    available_quantities = {}
+    for product, quantity in self._product_quantities.items():
+        reserved = 0.0
+        offer = offers.get(product)
+        if offer is not None:
+            strategy = self._strategy_factory(offer.offer_type)      # Factory escolhe
+            result = strategy.apply(offer, quantity, catalog.unit_price(product))  # Strategy calcula
+            if result.discount is not None:
+                receipt.add_discount(result.discount)
+            reserved = result.reserved_quantity
+        available_quantities[product] = max(quantity - reserved, 0.0)
+    return available_quantities
+```
+
+```mermaid
+classDiagram
+    class ShoppingCart {
+        -_strategy_factory
+        +handle_offers(receipt, offers, catalog)
+    }
+    class OfferStrategyFactory {
+        -_registry
+        +create(offer_type) OfferStrategyPort
+    }
+    class OfferStrategyPort {
+        <<Protocol>>
+        +apply(offer, quantity, unit_price) OfferResult
+    }
+    class ThreeForTwoStrategy
+    class PercentDiscountStrategy
+    class TwoForAmountStrategy
+    class FiveForAmountStrategy
+    ShoppingCart --> OfferStrategyFactory : pede a estratégia
+    ShoppingCart --> OfferStrategyPort : usa
+    OfferStrategyFactory ..> OfferStrategyPort : cria
+    OfferStrategyPort <|.. ThreeForTwoStrategy
+    OfferStrategyPort <|.. PercentDiscountStrategy
+    OfferStrategyPort <|.. TwoForAmountStrategy
+    OfferStrategyPort <|.. FiveForAmountStrategy
+```
+
+| | Antes | Depois |
+|---|---|---|
+| Complexidade de `handle_offers` (Radon) | **C (13)** | **A (4)** |
+| O carrinho conhece os tipos de oferta? | Sim, todos | Não |
+| Oferta nova exige editar o carrinho? | Sim | Não |
+| Regras testáveis isoladamente? | Não | Sim (`tests/test_estrategias.py`) |
+
+A **Factory** decide *quem* calcula; a **Strategy** define *como* calcular. O carrinho só coordena.
+
+---
+
+## 5. Princípios SOLID no projeto
+
+| Princípio | Onde aparece | Como identificar |
+|---|---|---|
+| **S** (Responsabilidade Única) | Cada estratégia tem uma regra; o carrinho guarda itens e delega; a fábrica só cria | Pergunte "por quantos motivos esta classe mudaria?". Cada uma tem um só |
+| **O** (Aberto/Fechado) | O combo entrou como classe nova (`src/offers/combo_promotion.py`) sem editar o carrinho nem as estratégias antigas. Prova: `git show --stat 989c1d8` | Uma funcionalidade nova entra **acrescentando** código, sem **modificar** o que já funcionava |
+| **L** (Substituição de Liskov) | `teller.product_with_name` usava `catalog.products`, que só o `FakeCatalog` tinha. Agora usa `product_by_name`, que faz parte do contrato de **todos** os catálogos | Qualquer implementação do contrato pode ser usada no lugar de outra sem quebrar quem a chama |
+| **I** (Segregação de Interfaces) | O catálogo tem duas portas: `CatalogReaderPort` (consultar) e `CatalogWriterPort` (cadastrar). O caixa só depende da leitura | Quem usa uma interface não é obrigado a conhecer métodos que não usa |
+| **D** (Inversão de Dependência) | O carrinho recebe a fábrica pelo construtor; o caixa recebe o calculador de combos e depende de portas (`Protocol`), não de classes concretas | As classes de alto nível dependem de abstrações, e as dependências podem ser trocadas nos testes |
+
+**Inversão × injeção de dependência:** a *inversão* é o princípio (depender de abstrações). A *injeção* é a técnica usada aqui para aplicá-lo (receber a dependência de fora, pelo construtor, com um valor padrão que mantém `ShoppingCart()` e `Teller(catalog)` funcionando como antes).
+
+---
+
+## 6. Arquitetura Limpa
+
+A regra central da Arquitetura Limpa é a **regra de dependência**: o código depende sempre de dentro para fora, nunca o contrário. As regras de negócio não conhecem banco de dados, impressão nem testes.
+
+```mermaid
+flowchart LR
+    subgraph AD["Adaptadores"]
+        FC[FakeCatalog]
+        SC[SupermarketCatalog]
+        RP[ReceiptPrinter]
+    end
+    subgraph UC["Caso de uso"]
+        T[Teller.checks_out_articles_from]
+    end
+    subgraph RN["Regras de negócio"]
+        ST[Estratégias de oferta]
+        CP[ComboPromotion]
+        F[OfferStrategyFactory]
+    end
+    subgraph EN["Entidades"]
+        MO[Product, Offer, Discount, Combo]
+        R[Receipt]
+    end
+    AD --> UC --> RN --> EN
+```
+
+| Camada | Arquivos | Papel |
+|---|---|---|
+| **Entidades** | `src/model_objects.py`, `src/receipt.py` | Conceitos do negócio, sem dependências externas |
+| **Regras de negócio** | `src/offers/` | Cálculo de ofertas e combos |
+| **Caso de uso** | `src/teller.py` | "Fechar a compra": registra itens, aplica ofertas antigas e depois os combos |
+| **Portas (contratos)** | `src/interfaces.py` | O que o caso de uso precisa, sem dizer como é feito |
+| **Adaptadores** | `src/catalog.py`, `tests/fake_catalog.py`, `tests/receipt_printer.py` | Detalhes externos: acesso a dados e apresentação (o `ReceiptPrinter` é o *Presenter*) |
+
+**Por que esta arquitetura e não uma completa, com mais camadas e pastas:** o sistema é pequeno e o enunciado exige preservar as interfaces públicas e os imports usados pelos testes. Por isso aplicamos a **regra de dependência e as portas**, que resolvem problemas reais (testabilidade e substituição do catálogo), sem reorganizar todos os arquivos em pastas decorativas.
+
+---
+
+## 7. Evidências
+
+| Evidência | Onde |
+|---|---|
+| Testes das estratégias, isoladas | `tests/test_estrategias.py` |
+| Testes da fábrica com estratégias falsas | `tests/test_fabrica_ofertas.py` |
+| Comportamento legado preservado | `tests/test_comportamento_legado.py` (34 testes que passam no código original e no atual) |
+| Suíte completa | 116 testes passando, 0 xfail |
+
+**Caso real:** durante a extração das estratégias, a descrição `"3 for 2"` foi traduzida por engano para `"3 por 2"`. O teste unitário não detectou, porque foi alterado junto com o código. Os testes de caracterização detectaram assim que o carrinho passou a usar as estratégias. A correção entrou no commit `647996d fix(ofertas): restaura descrição legada '3 for 2' da estratégia`.
