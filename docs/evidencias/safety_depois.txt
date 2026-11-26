@@ -1,0 +1,12 @@
+FERRAMENTA: Safety 3.8.1
+COMANDO: .\.venv\Scripts\safety.exe scan --target .
+POLITICA PREVISTA: .safety-policy.yml (exclui .venv/** e venv/**)
+CODIGO DE SAIDA: 1 - nenhuma varredura foi concluida
+
+REGISTRO DAS TENTATIVAS (25/11/2026, horario local):
+- Primeira execucao: a CLI solicitou login/registro interativo; sem resposta no processo nao interativo, terminou com EOF.
+- Segunda execucao, com acesso de rede solicitado: a inicializacao do cliente Safety falhou ao resolver/conectar ao servico (erro DNS/ConnectError).
+
+RESULTADO: a ferramenta nao chegou a analisar requirements.txt nem a aplicar a politica nesta etapa. Nao declarar "No issues found" para Safety com base nesta tentativa. A comparacao permanece pendente de uma execucao autenticada e conectada.
+
+Os avisos AuthlibDeprecationWarning referem-se a APIs usadas internamente pela CLI e nao sao achados do scanner.

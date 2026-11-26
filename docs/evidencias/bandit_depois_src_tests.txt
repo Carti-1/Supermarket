@@ -1,0 +1,1170 @@
+FERRAMENTA: Bandit 1.9.4
+COMANDO: .\venv\Scripts\bandit.exe -r src tests
+CODIGO DE SAIDA: 1
+
+Failed to find real location of C:\Program Files\Python314\python.exe
+[main]	INFO	profile include tests: None
+[main]	INFO	profile exclude tests: None
+[main]	INFO	cli include tests: None
+[main]	INFO	cli exclude tests: None
+[main]	INFO	running on Python 3.14.7
+Run started:2026-11-26 01:07:10.696056+00:00
+
+Test results:
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_combo_promotion.py:49:4
+48
+49	    assert _valores(descontos) == pytest.approx(esperado)
+50
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_combo_promotion.py:53:4
+52	def test_sem_combos_cadastrados_nao_ha_desconto(catalogo):
+53	    assert ComboPromotion().calculate_discounts([], {ESCOVA: 1.0, CREME: 1.0}, catalogo) == []
+54
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_combo_promotion.py:61:4
+60
+61	    assert quantidades == {ESCOVA: 2.0, CREME: 2.0}
+62
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_combo_promotion.py:72:4
+71
+72	    assert _valores(descontos) == pytest.approx([-3.5, -3.5])
+73
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_combo_promotion.py:87:4
+86
+87	    assert [d.product.name for d in higiene_primeiro] == ["Higiene bucal"]
+88	    assert _valores(higiene_primeiro) == pytest.approx([-2.5])
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_combo_promotion.py:88:4
+87	    assert [d.product.name for d in higiene_primeiro] == ["Higiene bucal"]
+88	    assert _valores(higiene_primeiro) == pytest.approx([-2.5])
+89	    assert [d.product.name for d in kit_primeiro] == ["Kit fio"]
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_combo_promotion.py:89:4
+88	    assert _valores(higiene_primeiro) == pytest.approx([-2.5])
+89	    assert [d.product.name for d in kit_primeiro] == ["Kit fio"]
+90	    assert _valores(kit_primeiro) == pytest.approx([-1.5])
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_combo_promotion.py:90:4
+89	    assert [d.product.name for d in kit_primeiro] == ["Kit fio"]
+90	    assert _valores(kit_primeiro) == pytest.approx([-1.5])
+91
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_combo_promotion.py:101:4
+100
+101	    assert _valores(descontos) == pytest.approx([-2.5, -1.5])
+102
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_combo_promotion.py:116:4
+115
+116	    assert _valores(descontos) == pytest.approx([-1.8] * combos_esperados)
+117
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_combo_promotion.py:125:4
+124
+125	    assert desconto.product.name == "Higiene bucal"
+126	    assert desconto.description == "10% combo"
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_combo_promotion.py:126:4
+125	    assert desconto.product.name == "Higiene bucal"
+126	    assert desconto.description == "10% combo"
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_combos.py:32:4
+31
+32	    assert combo.name == "Higiene bucal"
+33	    assert combo.required_quantities == {escova: 1.0, creme_dental: 1.0}
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_combos.py:33:4
+32	    assert combo.name == "Higiene bucal"
+33	    assert combo.required_quantities == {escova: 1.0, creme_dental: 1.0}
+34	    assert combo.discount_percentage == 10.0
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_combos.py:34:4
+33	    assert combo.required_quantities == {escova: 1.0, creme_dental: 1.0}
+34	    assert combo.discount_percentage == 10.0
+35
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_combos.py:60:4
+59
+60	    assert recibo.total_price() == pytest.approx(22.5)
+61	    assert len(recibo.discounts) == 1
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_combos.py:61:4
+60	    assert recibo.total_price() == pytest.approx(22.5)
+61	    assert len(recibo.discounts) == 1
+62	    assert recibo.discounts[0].discount_amount == pytest.approx(-2.5)
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_combos.py:62:4
+61	    assert len(recibo.discounts) == 1
+62	    assert recibo.discounts[0].discount_amount == pytest.approx(-2.5)
+63
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_combos.py:72:4
+71
+72	    assert recibo.total_price() == pytest.approx(10.0)
+73	    assert recibo.discounts == []
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_combos.py:73:4
+72	    assert recibo.total_price() == pytest.approx(10.0)
+73	    assert recibo.discounts == []
+74
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_combos.py:98:4
+97
+98	    assert calculador.quantidades_recebidas == {escova: 1.0, creme_dental: 1.0}
+99	    assert sorted(desconto.discount_amount for desconto in recibo.discounts) == [
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_combos.py:99:4
+98	    assert calculador.quantidades_recebidas == {escova: 1.0, creme_dental: 1.0}
+99	    assert sorted(desconto.discount_amount for desconto in recibo.discounts) == [
+100	        -10.0,
+101	        -1.0,
+102	    ]
+103	    assert recibo.total_price() == pytest.approx(44.0)
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_combos.py:103:4
+102	    ]
+103	    assert recibo.total_price() == pytest.approx(44.0)
+104
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_combos.py:114:4
+113
+114	    assert recibo.total_price() == pytest.approx(45.0)
+115	    assert len(recibo.discounts) == 2
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_combos.py:115:4
+114	    assert recibo.total_price() == pytest.approx(45.0)
+115	    assert len(recibo.discounts) == 2
+116	    assert [desconto.discount_amount for desconto in recibo.discounts] == pytest.approx(
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_combos.py:116:4
+115	    assert len(recibo.discounts) == 2
+116	    assert [desconto.discount_amount for desconto in recibo.discounts] == pytest.approx(
+117	        [-2.5, -2.5]
+118	    )
+119
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_combos.py:129:4
+128
+129	    assert recibo.total_price() == pytest.approx(32.5)
+130	    assert len(recibo.discounts) == 1
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_combos.py:130:4
+129	    assert recibo.total_price() == pytest.approx(32.5)
+130	    assert len(recibo.discounts) == 1
+131	    assert recibo.discounts[0].discount_amount == pytest.approx(-2.5)
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_combos.py:131:4
+130	    assert len(recibo.discounts) == 1
+131	    assert recibo.discounts[0].discount_amount == pytest.approx(-2.5)
+132
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_combos.py:143:4
+142
+143	    assert recibo.total_price() == pytest.approx(42.5)
+144	    assert sorted(desconto.discount_amount for desconto in recibo.discounts) == pytest.approx(
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_combos.py:144:4
+143	    assert recibo.total_price() == pytest.approx(42.5)
+144	    assert sorted(desconto.discount_amount for desconto in recibo.discounts) == pytest.approx(
+145	        [-10.0, -2.5]
+146	    )
+147
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_combos.py:180:4
+179
+180	    assert recibo.total_price() == pytest.approx(total)
+181	    assert [d.discount_amount for d in recibo.discounts] == pytest.approx(descontos)
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_combos.py:181:4
+180	    assert recibo.total_price() == pytest.approx(total)
+181	    assert [d.discount_amount for d in recibo.discounts] == pytest.approx(descontos)
+182
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_combos.py:193:4
+192
+193	    assert recibo.total_price() == pytest.approx(42.5)
+194	    assert [d.discount_amount for d in recibo.discounts] == pytest.approx([-10.0, -2.5])
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_combos.py:194:4
+193	    assert recibo.total_price() == pytest.approx(42.5)
+194	    assert [d.discount_amount for d in recibo.discounts] == pytest.approx([-10.0, -2.5])
+195
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_combos.py:206:4
+205
+206	    assert recibo.total_price() == pytest.approx(24.0)
+207	    assert [d.discount_amount for d in recibo.discounts] == pytest.approx([-1.0])
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_combos.py:207:4
+206	    assert recibo.total_price() == pytest.approx(24.0)
+207	    assert [d.discount_amount for d in recibo.discounts] == pytest.approx([-1.0])
+208
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_combos.py:224:4
+223
+224	    assert [d.discount_amount for d in recibo.discounts] == pytest.approx([2.5, -2.5])
+225	    assert recibo.total_price() == pytest.approx(45.0)
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_combos.py:225:4
+224	    assert [d.discount_amount for d in recibo.discounts] == pytest.approx([2.5, -2.5])
+225	    assert recibo.total_price() == pytest.approx(45.0)
+226
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_combos.py:240:4
+239
+240	    assert [d.product.name for d in recibo.discounts] == ["Higiene bucal"]
+241	    assert recibo.total_price() == pytest.approx(27.5)
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_combos.py:241:4
+240	    assert [d.product.name for d in recibo.discounts] == ["Higiene bucal"]
+241	    assert recibo.total_price() == pytest.approx(27.5)
+242
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_combos.py:260:4
+259	    # 1,5 � 8,00 + 10,00 = 22,00; desconto = 10% de (8,00 + 10,00) = 1,80
+260	    assert [d.discount_amount for d in recibo.discounts] == pytest.approx([-1.8])
+261	    assert recibo.total_price() == pytest.approx(20.2)
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_combos.py:261:4
+260	    assert [d.discount_amount for d in recibo.discounts] == pytest.approx([-1.8])
+261	    assert recibo.total_price() == pytest.approx(20.2)
+262
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_combos.py:273:4
+272	    linha_combo = "10% combo (Higiene bucal)" + " " * 10 + "-2.50\n"
+273	    assert linha_combo in impresso
+274	    assert impresso.endswith("Total: " + " " * 28 + "22.50\n")
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_combos.py:274:4
+273	    assert linha_combo in impresso
+274	    assert impresso.endswith("Total: " + " " * 28 + "22.50\n")
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_comportamento_legado.py:36:4
+35	    """desconto=None significa que o recibo n�o tem nenhuma linha de desconto."""
+36	    assert recibo.total_price() == pytest.approx(total)
+37	    if desconto is None:
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_comportamento_legado.py:38:8
+37	    if desconto is None:
+38	        assert recibo.discounts == []
+39	    else:
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_comportamento_legado.py:40:8
+39	    else:
+40	        assert len(recibo.discounts) == 1
+41	        assert recibo.discounts[0].discount_amount == pytest.approx(desconto)
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_comportamento_legado.py:41:8
+40	        assert len(recibo.discounts) == 1
+41	        assert recibo.discounts[0].discount_amount == pytest.approx(desconto)
+42
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_comportamento_legado.py:158:4
+157
+158	    assert [item.quantity for item in recibo.items] == [1.0, 2.0]
+159	    assert len(recibo.discounts) == 1
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_comportamento_legado.py:159:4
+158	    assert [item.quantity for item in recibo.items] == [1.0, 2.0]
+159	    assert len(recibo.discounts) == 1
+160	    assert recibo.discounts[0].discount_amount == pytest.approx(-10.0)
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_comportamento_legado.py:160:4
+159	    assert len(recibo.discounts) == 1
+160	    assert recibo.discounts[0].discount_amount == pytest.approx(-10.0)
+161	    assert recibo.total_price() == pytest.approx(20.0)
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_comportamento_legado.py:161:4
+160	    assert recibo.discounts[0].discount_amount == pytest.approx(-10.0)
+161	    assert recibo.total_price() == pytest.approx(20.0)
+162
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_comportamento_legado.py:188:4
+187	    descontos = [(d.product.name, d.description, d.discount_amount) for d in recibo.discounts]
+188	    assert [(nome, descricao) for nome, descricao, _ in descontos] == [
+189	        ("escova", "3 for 2"),
+190	        ("pasta", "20.0% off"),
+191	        ("arroz", "2 for 4.0"),
+192	    ]
+193	    assert [valor for _, _, valor in descontos] == pytest.approx([-0.99, -0.716, -1.96])
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_comportamento_legado.py:193:4
+192	    ]
+193	    assert [valor for _, _, valor in descontos] == pytest.approx([-0.99, -0.716, -1.96])
+194	    assert recibo.total_price() == pytest.approx(17.844)
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_comportamento_legado.py:194:4
+193	    assert [valor for _, _, valor in descontos] == pytest.approx([-0.99, -0.716, -1.96])
+194	    assert recibo.total_price() == pytest.approx(17.844)
+195
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_comportamento_legado.py:202:4
+201
+202	    assert recibo.total_price() == 0
+203	    assert recibo.items == []
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_comportamento_legado.py:203:4
+202	    assert recibo.total_price() == 0
+203	    assert recibo.items == []
+204	    assert recibo.discounts == []
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_comportamento_legado.py:204:4
+203	    assert recibo.items == []
+204	    assert recibo.discounts == []
+205
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_comportamento_legado.py:220:4
+219
+220	    assert recibo.discounts == []
+221	    assert recibo.total_price() == pytest.approx(6.0)
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_comportamento_legado.py:221:4
+220	    assert recibo.discounts == []
+221	    assert recibo.total_price() == pytest.approx(6.0)
+222
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_comportamento_legado.py:233:4
+232
+233	    assert len(recibo.discounts) == 1
+234	    assert recibo.discounts[0].description == descricao
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_comportamento_legado.py:234:4
+233	    assert len(recibo.discounts) == 1
+234	    assert recibo.discounts[0].description == descricao
+235	    assert recibo.discounts[0].product.name == "produto"
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_comportamento_legado.py:235:4
+234	    assert recibo.discounts[0].description == descricao
+235	    assert recibo.discounts[0].product.name == "produto"
+236
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_comportamento_legado.py:241:4
+240
+241	    assert len(recibo.items) == 1
+242	    item = recibo.items[0]
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_comportamento_legado.py:243:4
+242	    item = recibo.items[0]
+243	    assert item.product.name == "produto"
+244	    assert item.quantity == 2.0
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_comportamento_legado.py:244:4
+243	    assert item.product.name == "produto"
+244	    assert item.quantity == 2.0
+245	    assert item.price == pytest.approx(0.99)
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_comportamento_legado.py:245:4
+244	    assert item.quantity == 2.0
+245	    assert item.price == pytest.approx(0.99)
+246	    assert item.total_price == pytest.approx(1.98)
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_comportamento_legado.py:246:4
+245	    assert item.price == pytest.approx(0.99)
+246	    assert item.total_price == pytest.approx(1.98)
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_estrategias.py:29:8
+28	    if desconto is None:
+29	        assert resultado.discount is None
+30	    else:
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_estrategias.py:31:8
+30	    else:
+31	        assert resultado.discount.discount_amount == pytest.approx(desconto)
+32	        assert resultado.discount.product is PRODUTO
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_estrategias.py:32:8
+31	        assert resultado.discount.discount_amount == pytest.approx(desconto)
+32	        assert resultado.discount.product is PRODUTO
+33	    assert resultado.reserved_quantity == pytest.approx(reservado)
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_estrategias.py:33:4
+32	        assert resultado.discount.product is PRODUTO
+33	    assert resultado.reserved_quantity == pytest.approx(reservado)
+34
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_estrategias.py:43:4
+42	def test_toda_estrategia_cumpre_o_contrato(estrategia):
+43	    assert isinstance(estrategia, OfferStrategyPort)
+44
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_estrategias.py:60:4
+59	    oferta = _oferta(SpecialOfferType.THREE_FOR_TWO)
+60	    assert ThreeForTwoStrategy().apply(oferta, 3, PRECO).discount.description == "3 for 2"
+61
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_estrategias.py:68:4
+67	    _confere(resultado, desconto, quantidade)
+68	    assert resultado.discount.description == "10.0% off"
+69
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_fabrica_ofertas.py:28:4
+27
+28	    assert isinstance(fabrica.create(SpecialOfferType.THREE_FOR_TWO), EstrategiaFalsa)
+29
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_fabrica_ofertas.py:42:4
+41
+42	    assert isinstance(fabrica.create(SpecialOfferType.THREE_FOR_TWO), EstrategiaFalsa)
+43
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_fabrica_ofertas.py:46:4
+45	def test_registro_padrao_cobre_todos_os_tipos_legados():
+46	    assert set(DEFAULT_REGISTRY) == set(SpecialOfferType)
+47
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_fabrica_ofertas.py:59:4
+58	def test_registro_padrao_associa_cada_tipo_a_sua_estrategia(tipo, classe_esperada):
+59	    assert type(OfferStrategyFactory().create(tipo)) is classe_esperada
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_interfaces.py:30:4
+29
+30	    assert isinstance(catalogo, CatalogReaderPort)
+31	    assert isinstance(catalogo, CatalogWriterPort)
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_interfaces.py:31:4
+30	    assert isinstance(catalogo, CatalogReaderPort)
+31	    assert isinstance(catalogo, CatalogWriterPort)
+32	    assert catalogo.unit_price(produto) == 4.5
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_interfaces.py:32:4
+31	    assert isinstance(catalogo, CatalogWriterPort)
+32	    assert catalogo.unit_price(produto) == 4.5
+33	    assert catalogo.product_by_name("leite") is produto
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_interfaces.py:33:4
+32	    assert catalogo.unit_price(produto) == 4.5
+33	    assert catalogo.product_by_name("leite") is produto
+34	    assert catalogo.product_by_name("produto inexistente") is None
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_interfaces.py:34:4
+33	    assert catalogo.product_by_name("leite") is produto
+34	    assert catalogo.product_by_name("produto inexistente") is None
+35
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_interfaces.py:45:4
+44
+45	    assert isinstance(recibo, ReceiptWriterPort)
+46	    assert isinstance(recibo, ReceiptReaderPort)
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_interfaces.py:46:4
+45	    assert isinstance(recibo, ReceiptWriterPort)
+46	    assert isinstance(recibo, ReceiptReaderPort)
+47	    assert isinstance(recibo.items[0], ReceiptItemPort)
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_interfaces.py:47:4
+46	    assert isinstance(recibo, ReceiptReaderPort)
+47	    assert isinstance(recibo.items[0], ReceiptItemPort)
+48	    assert recibo.items[0].product is produto
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_interfaces.py:48:4
+47	    assert isinstance(recibo.items[0], ReceiptItemPort)
+48	    assert recibo.items[0].product is produto
+49	    assert recibo.discounts == [desconto]
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_interfaces.py:49:4
+48	    assert recibo.items[0].product is produto
+49	    assert recibo.discounts == [desconto]
+50	    assert recibo.total_price() == 5.0
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_interfaces.py:50:4
+49	    assert recibo.discounts == [desconto]
+50	    assert recibo.total_price() == 5.0
+51
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_interfaces.py:54:4
+53	def test_carrinho_real_implementa_o_contrato_consumido_pelo_caixa():
+54	    assert isinstance(ShoppingCart(), ShoppingCartPort)
+55
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_interfaces.py:67:4
+66
+67	    assert isinstance(recibo, ReceiptReaderPort)
+68	    assert caixa.product_with_name("cafe") is produto
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_interfaces.py:68:4
+67	    assert isinstance(recibo, ReceiptReaderPort)
+68	    assert caixa.product_with_name("cafe") is produto
+69	    assert caixa.product_with_name("produto inexistente") is None
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_interfaces.py:69:4
+68	    assert caixa.product_with_name("cafe") is produto
+69	    assert caixa.product_with_name("produto inexistente") is None
+70	    assert recibo.total_price() == 4.0
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_interfaces.py:70:4
+69	    assert caixa.product_with_name("produto inexistente") is None
+70	    assert recibo.total_price() == 4.0
+71	    assert recibo.items[0].quantity == 2.0
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_interfaces.py:71:4
+70	    assert recibo.total_price() == 4.0
+71	    assert recibo.items[0].quantity == 2.0
+72
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_interfaces.py:99:4
+98
+99	    assert isinstance(carrinho, ShoppingCartPort)
+100	    assert recibo.total_price() == 3.5
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_interfaces.py:100:4
+99	    assert isinstance(carrinho, ShoppingCartPort)
+100	    assert recibo.total_price() == 3.5
+101	    assert recibo.discounts[0].discount_amount == -0.5
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_interfaces.py:101:4
+100	    assert recibo.total_price() == 3.5
+101	    assert recibo.discounts[0].discount_amount == -0.5
+102
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_interfaces.py:117:4
+116
+117	    assert isinstance(EstrategiaDeTeste(), OfferStrategyPort)
+118
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_ofertas_legadas.py:52:4
+51
+52	    assert recibo.total_price() == pytest.approx(total_esperado)
+53	    if desconto_esperado is None:
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_ofertas_legadas.py:54:8
+53	    if desconto_esperado is None:
+54	        assert recibo.discounts == []
+55	    else:
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_ofertas_legadas.py:56:8
+55	    else:
+56	        assert len(recibo.discounts) == 1
+57	        assert recibo.discounts[0].discount_amount == pytest.approx(
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_ofertas_legadas.py:57:8
+56	        assert len(recibo.discounts) == 1
+57	        assert recibo.discounts[0].discount_amount == pytest.approx(
+58	            desconto_esperado
+59	        )
+60
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_ofertas_legadas.py:66:4
+65	    )
+66	    assert quantidades_disponiveis[produto] == pytest.approx(
+67	        quantidade_disponivel_esperada
+68	    )
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_supermarket.py:24:4
+23
+24	    assert 4.975 == pytest.approx(receipt.total_price(), 0.01)
+25	    assert [] == receipt.discounts
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_supermarket.py:25:4
+24	    assert 4.975 == pytest.approx(receipt.total_price(), 0.01)
+25	    assert [] == receipt.discounts
+26	    assert 1 == len(receipt.items)
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_supermarket.py:26:4
+25	    assert [] == receipt.discounts
+26	    assert 1 == len(receipt.items)
+27	    receipt_item = receipt.items[0]
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_supermarket.py:28:4
+27	    receipt_item = receipt.items[0]
+28	    assert apples == receipt_item.product
+29	    assert 1.99 == receipt_item.price
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_supermarket.py:29:4
+28	    assert apples == receipt_item.product
+29	    assert 1.99 == receipt_item.price
+30	    assert 2.5 * 1.99 == pytest.approx(receipt_item.total_price, 0.01)
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_supermarket.py:30:4
+29	    assert 1.99 == receipt_item.price
+30	    assert 2.5 * 1.99 == pytest.approx(receipt_item.total_price, 0.01)
+31	    assert 2.5 == receipt_item.quantity
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_supermarket.py:31:4
+30	    assert 2.5 * 1.99 == pytest.approx(receipt_item.total_price, 0.01)
+31	    assert 2.5 == receipt_item.quantity
+
+--------------------------------------------------
+
+Code scanned:
+	Total lines of code: 1279
+	Total lines skipped (#nosec): 0
+	Total potential issues skipped due to specifically being disabled (e.g., #nosec BXXX): 0
+
+Run metrics:
+	Total issues (by severity):
+		Undefined: 0
+		Low: 113
+		Medium: 0
+		High: 0
+	Total issues (by confidence):
+		Undefined: 0
+		Low: 0
+		Medium: 0
+		High: 113
+Files skipped (0):
