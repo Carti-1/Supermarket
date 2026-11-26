@@ -3,7 +3,7 @@
 **Projeto:** Modernização do Supermarket Receipt (AV3, Alta Qualidade de Software, SENAI CIMATEC)
 **Responsável pelo documento:** Matheus Sobral
 **Repositório:** github.com/Carti-1/Supermarket (branch de integração: `develop`)
-**Versão:** 1.0 (22/11/2026)
+**Versão:** 1.1 (25/11/2026)
 
 > Este plano responde a duas perguntas: **se algo der errado, como percebemos?** e **como voltamos a um estado seguro?** Ele vale para todas as mudanças de código da equipe, até o congelamento de 23/11.
 
@@ -36,10 +36,10 @@ A ordem foi escolhida para que **toda alteração de código já encontre testes
 | 3 | Limpeza do `Receipt` (Clean Code) | Heitor | ✅ PR #7 | Caracterização + approval do recibo |
 | 4 | Contrato `OfferStrategyPort` | Pedro | ✅ PR #8 | `tests/test_interfaces.py` |
 | 5 | Estratégias das 4 ofertas legadas | Pedro | ✅ PR #9 | `tests/test_estrategias.py` com os valores da caracterização |
-| 6 | Fábrica de estratégias | Matheus | 🔄 PR #10 em revisão | `tests/test_fabrica_ofertas.py` (stubs) |
-| 7 | Carrinho usa a fábrica (remove `if/elif` por tipo) | Pedro | ⏳ depende do PR #10 | Caracterização + `test_supermarket.py` |
-| 8 | `ComboPromotion` | Lucca | ⏳ pendente | `tests/test_combos.py` (4 testes `xfail`, fase vermelha) |
-| 9 | `Teller` aplica combos por padrão; remover `xfail` | Matheus | ⏳ depende da etapa 8 | Suíte completa verde, zero `xfail` |
+| 6 | Fábrica de estratégias | Matheus | ✅ PR #10 | `tests/test_fabrica_ofertas.py` (stubs) |
+| 7 | Carrinho usa a fábrica (remove `if/elif` por tipo) | Pedro | 🔄 branch `feature/carrinho-delega` | Caracterização + `test_supermarket.py` |
+| 8 | `ComboPromotion` | Lucca | ✅ PR #13 | `tests/test_combos.py` (cenários com o combo injetado) |
+| 9 | `Teller` aplica combos por padrão; remover `xfail` | Matheus | 🔄 PR #14 em revisão | Antes: 4 `XPASS(strict)`; depois: 116 passed, zero `xfail` |
 | 10 | Regressão final + cobertura | Heitor | ⏳ 23/11 | Comparação antes/depois |
 | 11 | Segurança e métricas "depois" (Bandit, pip-audit, Safety, Radon) | João | ⏳ 23/11 | Linha de base em `docs/seguranca_antes_depois.txt` |
 | 12 | Merge `develop` → `main` | Pedro | ⏳ 24/11 | Todos os critérios da seção 9 |
@@ -95,10 +95,10 @@ Qualquer outra mudança em `src/interfaces.py` vai em **PR próprio**, revisado 
 | ID | Decisão | Situação |
 |---|---|---|
 | D1 | **Convivência:** as ofertas legadas são aplicadas primeiro; o combo só usa as unidades que sobraram. Ex.: 4 escovas com "3 por 2" → 3 ficam na oferta legada, 1 pode entrar em combo | ✅ decidida (contrato) |
-| D2 | Combo com produto vendido por quilo (quantidade fracionária): permitir, contando apenas combos inteiros | ⚠️ **em aberto**, confirmar com o grupo |
-| D3 | Defeito legado: "2 por 15" com 3 unidades de R$ 10,00 cobra R$ 32,50 (mais que os R$ 30,00 sem oferta). Caracterizar o valor atual; se corrigir, fazer em commit `fix:` separado | ⚠️ **em aberto**, decidir se corrige |
+| D2 | Combo com produto vendido por quilo (quantidade fracionária): permitir, contando apenas combos inteiros (ex.: 1,5 kg exigindo 1,0 kg forma 1 combo) | ✅ decidida (`ComboPromotion`, teste `test_combo_com_produto_por_quilo_conta_combos_inteiros`) |
+| D3 | Defeito legado: "2 for 15" com 3 unidades de R$ 10,00 cobra R$ 32,50 (mais que os R$ 30,00 sem oferta). **Mantido de propósito** para preservar o comportamento legado; o combo não o corrige nem o duplica | ✅ decidida (registrada no teste `test_dois_por_valor_reserva_duas_escovas_e_a_terceira_entra_no_combo`) |
 | D4 | Busca de produto por nome via `product_by_name` no catálogo | ✅ decidida |
-| D6 | Produto usado no `Discount` do combo: um `Product` com o nome do combo, só para rotular a linha (ex.: "10% combo (Higiene bucal)") | ⚠️ **em aberto**, confirmar com o grupo |
+| D6 | Produto usado no `Discount` do combo: um `Product` com o nome do combo, só para rotular a linha (imprime "10% combo (Higiene bucal)") | ✅ decidida (teste `test_recibo_impresso_mostra_a_linha_do_combo`) |
 | D7 | Combos sobrepostos: a ordem de cadastro define a prioridade | ✅ decidida |
 
 ---
@@ -211,3 +211,4 @@ A refatoração é considerada aceita quando **todos** os itens abaixo forem ver
 | Data | Versão | Autor | Alteração |
 |---|---|---|---|
 | 22/11/2026 | 1.0 | Matheus Sobral | Versão inicial, alinhada aos guias da equipe e ao estado da `develop` em 22/11 |
+| 25/11/2026 | 1.1 | Matheus Sobral | Situação das etapas atualizada (PRs #10, #13 e #14); decisões D2, D3 e D6 registradas como fechadas |
