@@ -1,0 +1,25 @@
+﻿Name                                 Stmts   Miss  Cover   Missing
+------------------------------------------------------------------
+src\catalog.py                          10      3    70%   10, 13, 16
+src\interfaces.py                       43      0   100%
+src\model_objects.py                    40      0   100%
+src\offers\__init__.py                   0      0   100%
+src\offers\combo_promotion.py           24      0   100%
+src\offers\legacy_strategies.py         36      0   100%
+src\offers\offer_factory.py             16      0   100%
+src\receipt.py                          30      0   100%
+src\shopping_cart.py                    36      1    97%   33
+src\teller.py                           30      0   100%
+tests\__init__.py                        0      0   100%
+tests\fake_catalog.py                   13      0   100%
+tests\receipt_printer.py                44      4    91%   27, 43-46
+tests\test_combo_promotion.py           55      0   100%
+tests\test_combos.py                   153      0   100%
+tests\test_comportamento_legado.py     125      0   100%
+tests\test_estrategias.py               41      0   100%
+tests\test_fabrica_ofertas.py           23      1    96%   22
+tests\test_interfaces.py                73      1    99%   115
+tests\test_ofertas_legadas.py           24      0   100%
+tests\test_supermarket.py               24      0   100%
+------------------------------------------------------------------
+TOTAL                                  840     10    99%
