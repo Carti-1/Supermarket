@@ -1,0 +1,32 @@
+FERRAMENTA: Bandit 1.9.4
+COMANDO: .\venv\Scripts\bandit.exe -r src
+CODIGO DE SAIDA: 0
+
+Failed to find real location of C:\Program Files\Python314\python.exe
+[main]	INFO	profile include tests: None
+[main]	INFO	profile exclude tests: None
+[main]	INFO	cli include tests: None
+[main]	INFO	cli exclude tests: None
+[main]	INFO	running on Python 3.14.7
+Run started:2026-11-26 01:07:10.600620+00:00
+
+Test results:
+	No issues identified.
+
+Code scanned:
+	Total lines of code: 473
+	Total lines skipped (#nosec): 0
+	Total potential issues skipped due to specifically being disabled (e.g., #nosec BXXX): 0
+
+Run metrics:
+	Total issues (by severity):
+		Undefined: 0
+		Low: 0
+		Medium: 0
+		High: 0
+	Total issues (by confidence):
+		Undefined: 0
+		Low: 0
+		Medium: 0
+		High: 0
+Files skipped (0):

@@ -1,0 +1,131 @@
+================================================================================
+RELATÓRIO DE SEGURANÇA — ANTES X DEPOIS DA MODERNIZAÇÃO
+================================================================================
+Projeto: Supermarket Receipt
+Ambiente e ferramentas: Python 3.14.7 | Bandit 1.9.4 | pip-audit 2.10.1 | Safety 3.8.1
+
+================================================================================
+1. LINHA DE BASE — ANTES DA REFATORAÇÃO (branch: main)
+================================================================================
+Data de referência: 10/11/2026 (reexecutado na main em 25/11/2026 para conferência)
+
+- .\venv\Scripts\bandit.exe -r src
+  133 linhas analisadas; 0 alertas (Low: 0, Medium: 0, High: 0).
+
+- .\venv\Scripts\bandit.exe -r src tests
+  212 linhas analisadas; 7 alertas de severidade Low (High confidence), 0 Medium,
+  0 High. Todos os 7 alertas referem-se à regra B101 (uso de `assert`) no único
+  arquivo de teste legado (`tests\test_supermarket.py`, linhas 24 a 31).
+
+- .\venv\Scripts\pip-audit.exe -r requirements.txt --cache-dir venv/.cache/pip-audit
+  Resultado: No known vulnerabilities found.
+
+- .\.venv\Scripts\safety.exe scan --target .
+  152 dependências testadas (1 requirements.txt, 2 ambientes virtuais venv/.venv
+  e 4 arquivos pyproject.toml).
+  - requirements.txt: No issues found.
+  - Resumo geral: 29 vulnerabilidades encontradas, 29 ignoradas pela política
+    da Safety Platform, 0 correções sugeridas.
+
+================================================================================
+2. REAVALIAÇÃO — DEPOIS DA MODERNIZAÇÃO (branch: docs/seguranca-depois)
+================================================================================
+Data/hora local: 25/11/2026, aproximadamente 22:28
+Branch analisada: docs/seguranca-depois
+Commit analisado: 52dafd4 (docs(seguranca): registra reavaliacao apos modernizacao)
+
+- .\venv\Scripts\bandit.exe -r src
+  Resultado: 0 alertas (Low: 0, Medium: 0, High: 0).
+
+- .\venv\Scripts\bandit.exe -r src tests
+  1279 linhas analisadas; 113 alertas de severidade Low (High confidence),
+  0 Medium, 0 High. Todos os 113 alertas referem-se à regra B101 (uso de
+  `assert`) exclusivamente nos arquivos da pasta `tests/`.
+
+- .\venv\Scripts\pip-audit.exe -r requirements.txt --cache-dir venv/.cache/pip-audit
+  Resultado: No known vulnerabilities found.
+
+- .\.venv\Scripts\safety.exe scan --target .
+  Comandos executados:
+    .\.venv\Scripts\safety.exe scan --target .
+    .\.venv\Scripts\safety.exe scan --target . --output json
+  Código de saída da varredura: 0
+  Resumo da saída: 1 arquivo requirements.txt, 2 ambientes Python (.venv e venv)
+  e 4 arquivos pyproject.toml internos aos ambientes; 152 dependências
+  verificadas. O resumo de tela informou 29 vulnerabilidades encontradas e
+  29 ignoradas por política (0 correções sugeridas).
+
+================================================================================
+3. TABELA COMPARATIVA (ANTES X DEPOIS)
+================================================================================
+Ferramenta / Escopo        | Antes (main)                  | Depois (modernizado)
+---------------------------|-------------------------------|---------------------------------------
+Bandit (-r src)            | 0 alertas (133 LOC)           | 0 alertas
+Bandit (-r src tests)      | 7 alertas Low / B101 (212 LOC)| 113 alertas Low / B101 (1279 LOC)
+pip-audit (requirements)   | 0 vulnerabilidades            | 0 vulnerabilidades
+Safety (scan --target .)   | 0 em requirements.txt         | 0 em requirements.txt (1 item sem
+                           | (29 ignoradas por política)   | versão ignorado; 28 em venv/.venv)
+
+================================================================================
+4. ANÁLISE TÉCNICA E TRIAGEM
+================================================================================
+- Aumento de alertas B101 no Bandit (src + tests):
+  O salto de 7 para 113 alertas de severidade Low (B101 - assert_used) decorre
+  diretamente da expansão da suíte de testes automatizados (de 1 teste legado
+  em 212 linhas totais para 116 testes passando em 1279 linhas analisadas). O
+  uso de `assert` em arquivos de teste (`tests/`) é o mecanismo padrão do
+  pytest para asserções e não constitui vulnerabilidade de segurança. O
+  código de produção em `src/` manteve 0 alertas.
+
+- Triagem detalhada dos 29 itens ignorados pelo Safety CLI 3.8.1:
+  A inspeção estruturada via `--output json` detalhou exatamente os 29 achados
+  ignorados pela política remota (Safety Platform):
+  1. Arquivo `requirements.txt` (1 ocorrência):
+     - Pacote: `pytest` (declarado sem versão fixada).
+     - ID: SFTY-20260122-20373 (faixa vulnerável: `<9.0.3`).
+     - Motivo e impacto: ignorado por `unpinned-specification`
+       (`ignore-unpinned-requirements`). O ambiente local `.venv` possui
+       `pytest 9.2.0` instalado (fora da faixa vulnerável), portanto não afeta
+       o ambiente atual; contudo, a ausência de versão fixada no
+       `requirements.txt` (já apontada no diagnóstico técnico) deixa
+       instalações futuras sem essa garantia.
+  2. Ambientes virtuais `.venv` e `venv` (28 ocorrências):
+     - Pacote `filelock==3.32.7`: 13 IDs em cada ambiente (26 ocorrências no
+       total) — SFTY-20261017-54654, SFTY-20261017-57659, SFTY-20261017-72390,
+       SFTY-20261020-11422, SFTY-20261020-13394, SFTY-20261020-18367,
+       SFTY-20261020-25530, SFTY-20261020-34461, SFTY-20261020-81101,
+       SFTY-20261020-91319, SFTY-20261023-10299, SFTY-20261023-16869 e
+       SFTY-20261023-24590.
+     - Pacote `pip==26.2.1`: 1 ID em cada ambiente (2 ocorrências no total) —
+       SFTY-20261020-17374.
+     - Motivo e impacto: todos foram ignorados como `environment-dependency`
+       pela política remota. Embora as versões instaladas estejam dentro das
+       faixas vulneráveis indicadas pelo Safety, tratam-se de dependências de
+       ferramentas locais de desenvolvimento/auditoria nos ambientes virtuais,
+       não declaradas em `requirements.txt` nem empacotadas no código de
+       produção do Supermarket.
+
+- Comportamento da política (Safety Platform vs. política local):
+  A ferramenta informou que a política cloud do Safety Platform substituiu
+  arquivos de política locais, inclusive quando executado explicitamente com
+  `--policy-file .safety-policy.yml`. Para excluir os diretórios `venv` e
+  `.venv` da descoberta automática, a política do codebase precisa ser
+  atualizada diretamente no painel do Safety Platform.
+
+- Evidências registradas em `docs/evidencias/`:
+  - `safety_depois_detalhado.txt`: saída de tela da varredura.
+  - `safety_depois_json.txt`: saída estruturada (`--output json`) com IDs,
+    versões, faixas vulneráveis e motivos de exclusão.
+  - `safety_depois_politica_local.txt`: evidência do teste de precedência da
+    política cloud sobre `--policy-file .safety-policy.yml`.
+
+================================================================================
+5. CONCLUSÃO
+================================================================================
+Nenhuma dependência nova foi adicionada ao `requirements.txt` durante a
+refatoração (as ferramentas de análise e testes permaneceram restritas aos
+ambientes locais), e o código-fonte em `src/` manteve zero alertas no Bandit.
+Ainda assim, zero alertas nas ferramentas estáticas e de análise de composição
+não significa segurança total: falhas de lógica de negócio, requisitos sem
+versão fixada em instalações limpas, configurações de ambiente em implantação e
+vulnerabilidades ainda não catalogadas exigem revisão contínua.
