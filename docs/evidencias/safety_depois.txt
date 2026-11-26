@@ -1,12 +1,20 @@
-FERRAMENTA: Safety 3.8.1
-COMANDO: .\.venv\Scripts\safety.exe scan --target .
-POLITICA PREVISTA: .safety-policy.yml (exclui .venv/** e venv/**)
-CODIGO DE SAIDA: 1 - nenhuma varredura foi concluida
+Safety CLI 3.8.1 - resultado posterior a modernizacao
+Data/hora local: 25/11/2026, aproximadamente 22:28
+Branch analisada: docs/seguranca-depois
+Commit analisado: 52dafd4
+Comando: .\.venv\Scripts\safety.exe scan --target .
+Comando para obter dados estruturados: .\.venv\Scripts\safety.exe scan --target . --output json
+Codigo de saida da varredura: 0
 
-REGISTRO DAS TENTATIVAS (25/11/2026, horario local):
-- Primeira execucao: a CLI solicitou login/registro interativo; sem resposta no processo nao interativo, terminou com EOF.
-- Segunda execucao, com acesso de rede solicitado: a inicializacao do cliente Safety falhou ao resolver/conectar ao servico (erro DNS/ConnectError).
+Resumo da saida: 1 arquivo requirements.txt, 2 ambientes Python e 4 arquivos pyproject internos aos ambientes; 152 dependencias verificadas. O resumo de tela informou 29 vulnerabilidades ignoradas por politica.
 
-RESULTADO: a ferramenta nao chegou a analisar requirements.txt nem a aplicar a politica nesta etapa. Nao declarar "No issues found" para Safety com base nesta tentativa. A comparacao permanece pendente de uma execucao autenticada e conectada.
+Triagem:
+- requirements.txt: pytest sem versao. ID SFTY-20260122-20373, faixa vulneravel <9.0.3; ignorado por unpinned-specification (ignore-unpinned-requirements). O .venv local tem pytest 9.2.0, fora da faixa; o requisito sem versao deixa instalacoes futuras sem essa garantia.
+- Ambientes .venv e venv: 13 IDs para filelock==3.32.7 em cada ambiente (26 ocorrencias) e SFTY-20261020-17374 para pip==26.2.1 em cada ambiente (2 ocorrencias). Todos ignorados como environment-dependency pela politica remota; as versoes instaladas estao nas faixas vulneraveis indicadas pelo Safety. Sao dependencias instaladas para ferramentas locais, nao declaradas em requirements.txt.
 
-Os avisos AuthlibDeprecationWarning referem-se a APIs usadas internamente pela CLI e nao sao achados do scanner.
+IDs de filelock: SFTY-20261017-54654, SFTY-20261017-57659, SFTY-20261017-72390, SFTY-20261020-11422, SFTY-20261020-13394, SFTY-20261020-18367, SFTY-20261020-25530, SFTY-20261020-34461, SFTY-20261020-81101, SFTY-20261020-91319, SFTY-20261023-10299, SFTY-20261023-16869, SFTY-20261023-24590.
+ID de pip: SFTY-20261020-17374.
+
+Politica: Safety Platform. A ferramenta informou que a politica cloud substituiu arquivos de politica locais, inclusive com --policy-file .safety-policy.yml. Para excluir venvs da descoberta, a politica do codebase deve ser atualizada no Safety Platform.
+
+Evidencias detalhadas: safety_depois_detalhado.txt (saida de tela), safety_depois_json.txt (IDs, versoes, faixas e motivos) e safety_depois_politica_local.txt (teste de precedencia da politica).

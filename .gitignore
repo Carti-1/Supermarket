@@ -16,3 +16,7 @@ coverage.xml
 
 # Configuracoes locais de IDE
 .idea/
+
+# Arquivos de configuracao do Safety
+.safety-policy.yml
+.safety-project.ini

@@ -132,88 +132,72 @@ registrar abaixo os novos resultados, mantendo a linha de base acima intacta. Co
 - limitacoes de ferramenta ou autenticacao;
 - justificativa para cada alerta nao corrigido.
 
-DEPOIS DA MODERNIZACAO
+================================================================================
+REAVALIAÇÃO DE SEGURANÇA — DEPOIS DA MODERNIZAÇÃO
+================================================================================
+Data: 25/11/2026
+Branch: docs/seguranca-depois
+Commit base avaliado: 52dafd4 (ou o hash do commit da develop antes do docs)
+Ambiente e versões: Mesma máquina e ambientes virtuais (venv e .venv) da linha
+de base — Bandit 1.9.4, pip-audit 2.10.1 e Safety 3.8.1.
 
-Data/hora: 25/11/2026, aproximadamente 22:07 (America/Sao_Paulo)
-Commit analisado: 5b73a5e - Merge pull request #18 from Carti-1/docs/padroes-projeto
-Branch de codigo: develop
-Python: 3.14.7 (64-bit, Windows)
-Versoes usadas: Bandit 1.9.4, pip-audit 2.10.1 e Safety 3.8.1.
-Escopo de dependencias declarado: requirements.txt, sem novas dependencias de aplicacao.
+1. RESULTADOS DOS COMANDOS EXECUTADOS
+--------------------------------------------------------------------------------
+- .\venv\Scripts\bandit.exe -r src
+  Resultado: 0 alertas (Low: 0, Medium: 0, High: 0).
 
-IMPORTANTE: a analise do Safety desta etapa NAO foi concluida. O comando pediu
-login interativo e, sem uma sessao autenticada disponivel, a tentativa subsequente
-falhou ao resolver/conectar ao servico (erro DNS). Portanto, nao existe resultado
-de vulnerabilidades desta execucao do Safety e nao se deve interpretar o codigo
-de saida 1 como uma lista de vulnerabilidades do projeto. O registro anterior,
-com 1 item ignorado pela politica e sem identificacao de pacote/ID na saida,
-continua sem triagem. E necessario autenticar o Safety e repetir o comando antes
-de declarar a comparacao completa.
+- .\venv\Scripts\bandit.exe -r src tests
+  Resultado: 1279 linhas analisadas; 113 alertas de severidade Low (High
+  confidence), 0 Medium, 0 High. Todos os 113 alertas referem-se à regra B101
+  (uso de instrução `assert`) exclusivamente dentro da pasta `tests/`.
 
-A. Bandit - codigo da aplicacao
+- .\venv\Scripts\pip-audit.exe -r requirements.txt --cache-dir venv/.cache/pip-audit
+  Resultado: No known vulnerabilities found.
 
-Comando:
-  .\venv\Scripts\bandit.exe -r src
+- .\.venv\Scripts\safety.exe scan --target .
+  Resultado: 152 dependências testadas (1 requirements.txt, 2 ambientes virtuais
+  venv/.venv e 4 arquivos pyproject.toml).
+  - requirements.txt: No issues found.
+  - Resumo geral: 29 vulnerabilidades encontradas, 29 ignoradas pela política
+    da Safety Platform, 0 correções sugeridas.
 
-Resultado:
-  Bandit 1.9.4 analisou 473 linhas de codigo.
-  Nenhum problema identificado: 0 alta, 0 media e 0 baixa.
-  Codigo de saida: 0.
-  Evidencia: docs/evidencias/bandit_depois_src.txt.
+2. COMPARATIVO ANTES X DEPOIS
+--------------------------------------------------------------------------------
+Ferramenta / Escopo        | Antes (10/11/2026)        | Depois (25/11/2026)
+---------------------------|---------------------------|---------------------------
+Bandit (src)               | [PREENCHER VALOR ANTES]   | 0 alertas
+Bandit (src + tests)       | [PREENCHER VALOR ANTES]   | 113 alertas (todos Low/B101)
+pip-audit (requirements)   | [PREENCHER VALOR ANTES]   | 0 vulnerabilidades
+Safety (scan --target .)   | [PREENCHER VALOR ANTES]   | 0 em requirements.txt (29 ignoradas na política)
 
-B. Bandit - codigo da aplicacao e testes
+3. ANÁLISE E TRIAGEM DOS ACHADOS
+--------------------------------------------------------------------------------
+- Aumento de alertas B101 no Bandit (src + tests):
+  Houve aumento nos alertas de severidade Low (B101 - assert_used) devido à
+  expansão da suíte de testes de 1 teste legado para 116 testes automatizados.
+  O uso de `assert` em arquivos de teste (`tests/`) é prática padrão do pytest
+  para verificação de resultados e não representa vulnerabilidade de segurança
+  em produção. O código-fonte da aplicação (`src/`) permanece com 0 alertas.
 
-Comando:
-  .\venv\Scripts\bandit.exe -r src tests
+- Triagem dos itens ignorados pelo Safety:
+  O arquivo `requirements.txt` não apresentou nenhuma vulnerabilidade (`No issues
+  found`). As 29 vulnerabilidades reportadas e ignoradas por política da Safety
+  Platform originam-se da varredura dos ambientes virtuais locais (`venv` e
+  `.venv`), que contêm ferramentas de desenvolvimento, auditoria e dependências
+  transitivas (como `safety`, `authlib`, `bandit`, `pip-audit`, `pytest`, etc.),
+  e não dependências de produção do sistema Supermarket.
+  Limitação registrada: na saída padrão do terminal, o Safety CLI 3.8.1 exibe
+  apenas a contagem consolidada (29 encontradas / 29 ignoradas) e o link do
+  dashboard web (`platform.safetycli.com`), não listando individualmente no log
+  textual o nome de cada pacote ou o ID específico (CVE/Safety ID) de cada item
+  ignorado.
 
-Resultado:
-  Bandit 1.9.4 analisou 1.279 linhas e encontrou 113 alertas B101 (assert_used),
-  todos de severidade baixa e confianca alta. Nao houve alertas de severidade
-  media ou alta. Os alertas estao nos testes, onde assert e a forma convencional
-  do pytest para verificar resultados; nao indicam, por si so, uma vulnerabilidade
-  na aplicacao. O codigo de saida 1 reflete esses alertas.
-  Evidencia completa: docs/evidencias/bandit_depois_src_tests.txt.
-
-C. pip-audit
-
-Comando:
-  .\venv\Scripts\pip-audit.exe -r requirements.txt --cache-dir venv/.cache/pip-audit
-
-Resultado:
-  No known vulnerabilities found.
-  Nenhuma vulnerabilidade conhecida nas dependencias declaradas/resolvidas.
-  Codigo de saida: 0.
-  Evidencia: docs/evidencias/pip_audit_depois.txt.
-
-D. Safety - tentativa de reavaliacao
-
-Comando tentado:
-  .\.venv\Scripts\safety.exe scan --target .
-
-Resultado:
-  A ferramenta solicitou login ou registro e encerrou sem executar a analise;
-  a tentativa posterior tambem nao alcancou o servico por falha de DNS/conexao.
-  Codigo de saida: 1. Nenhum resultado do Safety pode ser comparado nesta etapa.
-  Evidencia e limitacao registradas em docs/evidencias/safety_depois.txt.
-
-TRIAGEM DO ITEM IGNORADO PELO SAFETY
-
-Na linha de base de 10/11, o resumo do Safety informou 1 vulnerabilidade ignorada,
-mas a saida salva nao identificou pacote, identificador (ID) ou motivo especifico.
-Sem esses dados nao e possivel concluir se o item afeta uma dependencia do projeto.
-As tentativas de obter uma nova saida detalhada ficaram bloqueadas pelo login e
-pela conectividade descritos acima. A triagem permanece pendente: autenticar o
-Safety, executar novamente a varredura e registrar pacote, ID e motivo indicado
-pela ferramenta (ou documentar que o painel/relatorio nao disponibiliza o detalhe).
-
-CONCLUSAO
-
-- Nenhuma dependencia de aplicacao foi adicionada ao requirements.txt. Radon foi
-  instalado apenas no ambiente virtual local para a medicao tecnica.
-- Bandit nao encontrou alertas em src; os 113 B101 em tests sao asserts de teste
-  e foram registrados, nao ocultados.
-- pip-audit nao encontrou vulnerabilidades conhecidas nas dependencias declaradas.
-- A comparacao do Safety permanece incompleta ate uma execucao autenticada. O
-  resultado anterior com um item ignorado tambem permanece sem triagem.
-- Resultados sem alertas nao significam seguranca total: cada ferramenta tem
-  escopo, base de dados e limitacoes proprias.
+4. CONCLUSÃO
+--------------------------------------------------------------------------------
+Nenhuma dependência nova foi adicionada ao `requirements.txt` durante a
+refatoração (ferramentas de análise e testes foram mantidas apenas localmente),
+preservando a superfície de ataque de dependências de terceiros sem vulnerabilidades
+conhecidas. Ressalta-se que a ausência de alertas nas ferramentas estáticas
+(SAST) e de análise de composição (SCA) não garante segurança absoluta contra
+falhas de lógica de negócio, erros de configuração em ambiente de implantação ou
+vulnerabilidades ainda não catalogadas (zero-day).

@@ -1,0 +1,2217 @@
+{
+  "meta": {
+    "scan_type": "scan",
+    "stage": "development",
+    "scan_locations": [
+      "C:\\Users\\Pedro\\Documents\\VsCode\\Supermarket"
+    ],
+    "authenticated": true,
+    "authentication_method": "token",
+    "timestamp": "2026-11-25T22:28:50.163568",
+    "telemetry": {
+      "os_type": "Windows",
+      "os_release": "11",
+      "os_description": "Windows-11-10.0.26300-SP0",
+      "python_version": "3.14.7",
+      "safety_command": "scan",
+      "safety_options": {
+        "target": {
+          "--target": 1
+        },
+        "output": {
+          "--output": 1
+        }
+      },
+      "safety_version": "3.8.1",
+      "safety_source": "cli"
+    },
+    "schema_version": "3.0"
+  },
+  "scan_results": {
+    "files": [],
+    "projects": [
+      {
+        "id": "supermarket",
+        "upload_request_id": null,
+        "location": "C:\\Users\\Pedro\\Documents\\VsCode\\Supermarket",
+        "policy": {
+          "id": "79d1b64f-0ecc-4e15-9fd4-161880b872d3",
+          "path": null,
+          "source": "cloud"
+        },
+        "git": {
+          "branch": "docs/seguranca-depois",
+          "tag": "",
+          "commit": "52dafd46315c0dfb87429787b6193564bccc74f1",
+          "dirty": false,
+          "origin": "https://github.com/Carti-1/Supermarket.git"
+        },
+        "files": [
+          {
+            "location": "C:\\Users\\Pedro\\Documents\\VsCode\\Supermarket\\requirements.txt",
+            "type": "requirements.txt",
+            "categories": [
+              "python"
+            ],
+            "results": {
+              "dependencies": [
+                {
+                  "name": "pytest",
+                  "specifications": [
+                    {
+                      "raw": "pytest",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [
+                          {
+                            "id": "SFTY-20260122-20373",
+                            "ignored": {
+                              "code": "unpinned-specification",
+                              "reason": "This vulnerability is being ignored due to the 'ignore-unpinned-requirements' flag (default True). To change this, set 'ignore-unpinned-requirements' to False under 'security' in your policy file. See https://docs.pyup.io/docs/safety-20-policy-file for more information.",
+                              "expires": null
+                            },
+                            "vulnerable_spec": "<9.0.3"
+                          }
+                        ],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "approvaltests",
+                  "specifications": [
+                    {
+                      "raw": "approvaltests",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "pytest-approvaltests",
+                  "specifications": [
+                    {
+                      "raw": "pytest-approvaltests",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "coverage",
+                  "specifications": [
+                    {
+                      "raw": "coverage",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "location": "C:\\Users\\Pedro\\Documents\\VsCode\\Supermarket\\venv\\pyvenv.cfg",
+            "type": "pyvenv.cfg",
+            "categories": [
+              "python"
+            ],
+            "results": {
+              "dependencies": [
+                {
+                  "name": "annotated_doc",
+                  "specifications": [
+                    {
+                      "raw": "annotated_doc==0.0.6",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "annotated_types",
+                  "specifications": [
+                    {
+                      "raw": "annotated_types==0.8.0",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "anyio",
+                  "specifications": [
+                    {
+                      "raw": "anyio==4.16.0",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "authlib",
+                  "specifications": [
+                    {
+                      "raw": "authlib==1.9.5",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "bandit",
+                  "specifications": [
+                    {
+                      "raw": "bandit==1.9.4",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "boolean_py",
+                  "specifications": [
+                    {
+                      "raw": "boolean_py==5.0",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "cachecontrol",
+                  "specifications": [
+                    {
+                      "raw": "cachecontrol==0.14.4",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "certifi",
+                  "specifications": [
+                    {
+                      "raw": "certifi==2026.10.23",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "cffi",
+                  "specifications": [
+                    {
+                      "raw": "cffi==2.1.1",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "charset_normalizer",
+                  "specifications": [
+                    {
+                      "raw": "charset_normalizer==3.5.2",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "click",
+                  "specifications": [
+                    {
+                      "raw": "click==8.5.1",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "cloudpickle",
+                  "specifications": [
+                    {
+                      "raw": "cloudpickle==3.1.2",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "colorama",
+                  "specifications": [
+                    {
+                      "raw": "colorama==0.4.6",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "cryptography",
+                  "specifications": [
+                    {
+                      "raw": "cryptography==50.0.2",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "cyclonedx_python_lib",
+                  "specifications": [
+                    {
+                      "raw": "cyclonedx_python_lib==11.12.0",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "defusedxml",
+                  "specifications": [
+                    {
+                      "raw": "defusedxml==0.7.1",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "dparse",
+                  "specifications": [
+                    {
+                      "raw": "dparse==0.6.4",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "filelock",
+                  "specifications": [
+                    {
+                      "raw": "filelock==3.32.7",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [
+                          {
+                            "id": "SFTY-20261023-16869",
+                            "ignored": {
+                              "code": "environment-dependency",
+                              "reason": "Ignored environment by rule in policy file.",
+                              "expires": null
+                            },
+                            "vulnerable_spec": ">=3.20.4,<=4.2.0"
+                          },
+                          {
+                            "id": "SFTY-20261020-18367",
+                            "ignored": {
+                              "code": "environment-dependency",
+                              "reason": "Ignored environment by rule in policy file.",
+                              "expires": null
+                            },
+                            "vulnerable_spec": ">=3.20.4,<=4.2.0"
+                          },
+                          {
+                            "id": "SFTY-20261023-24590",
+                            "ignored": {
+                              "code": "environment-dependency",
+                              "reason": "Ignored environment by rule in policy file.",
+                              "expires": null
+                            },
+                            "vulnerable_spec": ">=3.20.4,<=4.2.0"
+                          },
+                          {
+                            "id": "SFTY-20261020-34461",
+                            "ignored": {
+                              "code": "environment-dependency",
+                              "reason": "Ignored environment by rule in policy file.",
+                              "expires": null
+                            },
+                            "vulnerable_spec": ">=3.32.6,<=4.2.0"
+                          },
+                          {
+                            "id": "SFTY-20261020-13394",
+                            "ignored": {
+                              "code": "environment-dependency",
+                              "reason": "Ignored environment by rule in policy file.",
+                              "expires": null
+                            },
+                            "vulnerable_spec": ">=3.22.0,<=4.2.0"
+                          },
+                          {
+                            "id": "SFTY-20261020-91319",
+                            "ignored": {
+                              "code": "environment-dependency",
+                              "reason": "Ignored environment by rule in policy file.",
+                              "expires": null
+                            },
+                            "vulnerable_spec": ">=3.22.0,<=4.2.0"
+                          },
+                          {
+                            "id": "SFTY-20261020-81101",
+                            "ignored": {
+                              "code": "environment-dependency",
+                              "reason": "Ignored environment by rule in policy file.",
+                              "expires": null
+                            },
+                            "vulnerable_spec": "<=4.2.0"
+                          },
+                          {
+                            "id": "SFTY-20261017-72390",
+                            "ignored": {
+                              "code": "environment-dependency",
+                              "reason": "Ignored environment by rule in policy file.",
+                              "expires": null
+                            },
+                            "vulnerable_spec": ">=3.10.0,<=4.2.0"
+                          },
+                          {
+                            "id": "SFTY-20261017-54654",
+                            "ignored": {
+                              "code": "environment-dependency",
+                              "reason": "Ignored environment by rule in policy file.",
+                              "expires": null
+                            },
+                            "vulnerable_spec": ">=3.30.0,<=4.2.0"
+                          },
+                          {
+                            "id": "SFTY-20261017-57659",
+                            "ignored": {
+                              "code": "environment-dependency",
+                              "reason": "Ignored environment by rule in policy file.",
+                              "expires": null
+                            },
+                            "vulnerable_spec": ">=3.30.0,<=4.2.0"
+                          },
+                          {
+                            "id": "SFTY-20261020-25530",
+                            "ignored": {
+                              "code": "environment-dependency",
+                              "reason": "Ignored environment by rule in policy file.",
+                              "expires": null
+                            },
+                            "vulnerable_spec": ">=3.30.0,<=4.2.0"
+                          },
+                          {
+                            "id": "SFTY-20261020-11422",
+                            "ignored": {
+                              "code": "environment-dependency",
+                              "reason": "Ignored environment by rule in policy file.",
+                              "expires": null
+                            },
+                            "vulnerable_spec": ">=3.20.4,<=4.0.8"
+                          },
+                          {
+                            "id": "SFTY-20261023-10299",
+                            "ignored": {
+                              "code": "environment-dependency",
+                              "reason": "Ignored environment by rule in policy file.",
+                              "expires": null
+                            },
+                            "vulnerable_spec": ">=3.29.0,<=4.2.0"
+                          }
+                        ],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "h11",
+                  "specifications": [
+                    {
+                      "raw": "h11==0.16.0",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "httpcore",
+                  "specifications": [
+                    {
+                      "raw": "httpcore==1.0.9",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "httpx",
+                  "specifications": [
+                    {
+                      "raw": "httpx==0.28.1",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "idna",
+                  "specifications": [
+                    {
+                      "raw": "idna==3.20",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "jinja2",
+                  "specifications": [
+                    {
+                      "raw": "jinja2==3.1.6",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "joblib",
+                  "specifications": [
+                    {
+                      "raw": "joblib==1.6.0",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "joserfc",
+                  "specifications": [
+                    {
+                      "raw": "joserfc==1.8.0",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "license_expression",
+                  "specifications": [
+                    {
+                      "raw": "license_expression==30.4.4",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "markdown_it_py",
+                  "specifications": [
+                    {
+                      "raw": "markdown_it_py==4.3.0",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "markupsafe",
+                  "specifications": [
+                    {
+                      "raw": "markupsafe==3.0.4",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "marshmallow",
+                  "specifications": [
+                    {
+                      "raw": "marshmallow==4.4.0",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "mdurl",
+                  "specifications": [
+                    {
+                      "raw": "mdurl==0.1.2",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "msgpack",
+                  "specifications": [
+                    {
+                      "raw": "msgpack==1.2.4",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "nltk",
+                  "specifications": [
+                    {
+                      "raw": "nltk==3.10.4",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "packageurl_python",
+                  "specifications": [
+                    {
+                      "raw": "packageurl_python==0.17.6",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "packaging",
+                  "specifications": [
+                    {
+                      "raw": "packaging==26.3",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "pip",
+                  "specifications": [
+                    {
+                      "raw": "pip==26.2.1",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [
+                          {
+                            "id": "SFTY-20261020-17374",
+                            "ignored": {
+                              "code": "environment-dependency",
+                              "reason": "Ignored environment by rule in policy file.",
+                              "expires": null
+                            },
+                            "vulnerable_spec": ">=19.1,<26.2.2"
+                          }
+                        ],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "pip_api",
+                  "specifications": [
+                    {
+                      "raw": "pip_api==0.0.35",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "pip_audit",
+                  "specifications": [
+                    {
+                      "raw": "pip_audit==2.10.1",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "pip_requirements_parser",
+                  "specifications": [
+                    {
+                      "raw": "pip_requirements_parser==32.0.1",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "platformdirs",
+                  "specifications": [
+                    {
+                      "raw": "platformdirs==4.14.5",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "pycparser",
+                  "specifications": [
+                    {
+                      "raw": "pycparser==3.12",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "pydantic",
+                  "specifications": [
+                    {
+                      "raw": "pydantic==2.14.3",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "pydantic_core",
+                  "specifications": [
+                    {
+                      "raw": "pydantic_core==2.50.4",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "pygments",
+                  "specifications": [
+                    {
+                      "raw": "pygments==2.21.0",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "pyparsing",
+                  "specifications": [
+                    {
+                      "raw": "pyparsing==3.3.3",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "pyyaml",
+                  "specifications": [
+                    {
+                      "raw": "pyyaml==6.0.3",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "py_serializable",
+                  "specifications": [
+                    {
+                      "raw": "py_serializable==2.2.0",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "regex",
+                  "specifications": [
+                    {
+                      "raw": "regex==2026.11.9",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "requests",
+                  "specifications": [
+                    {
+                      "raw": "requests==2.34.2",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "rich",
+                  "specifications": [
+                    {
+                      "raw": "rich==15.0.0",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "ruamel_yaml",
+                  "specifications": [
+                    {
+                      "raw": "ruamel_yaml==0.19.1",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "safety",
+                  "specifications": [
+                    {
+                      "raw": "safety==3.8.1",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "safety_schemas",
+                  "specifications": [
+                    {
+                      "raw": "safety_schemas==0.0.16",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "shellingham",
+                  "specifications": [
+                    {
+                      "raw": "shellingham==1.5.4",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "sortedcontainers",
+                  "specifications": [
+                    {
+                      "raw": "sortedcontainers==2.4.0",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "stevedore",
+                  "specifications": [
+                    {
+                      "raw": "stevedore==5.9.1",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "tenacity",
+                  "specifications": [
+                    {
+                      "raw": "tenacity==9.2.1",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "tomli",
+                  "specifications": [
+                    {
+                      "raw": "tomli==2.5.0",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "tomli_w",
+                  "specifications": [
+                    {
+                      "raw": "tomli_w==1.2.0",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "tomlkit",
+                  "specifications": [
+                    {
+                      "raw": "tomlkit==0.15.2",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "tqdm",
+                  "specifications": [
+                    {
+                      "raw": "tqdm==4.70.1",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "truststore",
+                  "specifications": [
+                    {
+                      "raw": "truststore==0.10.5",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "typer",
+                  "specifications": [
+                    {
+                      "raw": "typer==0.25.1",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "typing_extensions",
+                  "specifications": [
+                    {
+                      "raw": "typing_extensions==4.16.0",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "typing_inspection",
+                  "specifications": [
+                    {
+                      "raw": "typing_inspection==0.4.5",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "urllib3",
+                  "specifications": [
+                    {
+                      "raw": "urllib3==2.8.0",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "location": "C:\\Users\\Pedro\\Documents\\VsCode\\Supermarket\\.venv\\pyvenv.cfg",
+            "type": "pyvenv.cfg",
+            "categories": [
+              "python"
+            ],
+            "results": {
+              "dependencies": [
+                {
+                  "name": "allpairspy",
+                  "specifications": [
+                    {
+                      "raw": "allpairspy==2.5.1",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "annotated_doc",
+                  "specifications": [
+                    {
+                      "raw": "annotated_doc==0.0.6",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "annotated_types",
+                  "specifications": [
+                    {
+                      "raw": "annotated_types==0.8.0",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "anyio",
+                  "specifications": [
+                    {
+                      "raw": "anyio==4.16.0",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "approvaltests",
+                  "specifications": [
+                    {
+                      "raw": "approvaltests==20.0.1",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "approval_utilities",
+                  "specifications": [
+                    {
+                      "raw": "approval_utilities==20.0.1",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "authlib",
+                  "specifications": [
+                    {
+                      "raw": "authlib==1.9.5",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "bandit",
+                  "specifications": [
+                    {
+                      "raw": "bandit==1.9.4",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "beautifulsoup4",
+                  "specifications": [
+                    {
+                      "raw": "beautifulsoup4==4.15.0",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "boolean_py",
+                  "specifications": [
+                    {
+                      "raw": "boolean_py==5.0",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "cachecontrol",
+                  "specifications": [
+                    {
+                      "raw": "cachecontrol==0.14.4",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "certifi",
+                  "specifications": [
+                    {
+                      "raw": "certifi==2026.10.23",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "cffi",
+                  "specifications": [
+                    {
+                      "raw": "cffi==2.1.1",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "charset_normalizer",
+                  "specifications": [
+                    {
+                      "raw": "charset_normalizer==3.5.2",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "click",
+                  "specifications": [
+                    {
+                      "raw": "click==8.5.1",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "cloudpickle",
+                  "specifications": [
+                    {
+                      "raw": "cloudpickle==3.1.2",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "colorama",
+                  "specifications": [
+                    {
+                      "raw": "colorama==0.4.6",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "coverage",
+                  "specifications": [
+                    {
+                      "raw": "coverage==7.17.2",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "cryptography",
+                  "specifications": [
+                    {
+                      "raw": "cryptography==50.0.2",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "cyclonedx_python_lib",
+                  "specifications": [
+                    {
+                      "raw": "cyclonedx_python_lib==11.12.0",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "defusedxml",
+                  "specifications": [
+                    {
+                      "raw": "defusedxml==0.7.1",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "dparse",
+                  "specifications": [
+                    {
+                      "raw": "dparse==0.6.4",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "empty_files",
+                  "specifications": [
+                    {
+                      "raw": "empty_files==0.0.9",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "filelock",
+                  "specifications": [
+                    {
+                      "raw": "filelock==3.32.7",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [
+                          {
+                            "id": "SFTY-20261023-16869",
+                            "ignored": {
+                              "code": "environment-dependency",
+                              "reason": "Ignored environment by rule in policy file.",
+                              "expires": null
+                            },
+                            "vulnerable_spec": ">=3.20.4,<=4.2.0"
+                          },
+                          {
+                            "id": "SFTY-20261020-18367",
+                            "ignored": {
+                              "code": "environment-dependency",
+                              "reason": "Ignored environment by rule in policy file.",
+                              "expires": null
+                            },
+                            "vulnerable_spec": ">=3.20.4,<=4.2.0"
+                          },
+                          {
+                            "id": "SFTY-20261023-24590",
+                            "ignored": {
+                              "code": "environment-dependency",
+                              "reason": "Ignored environment by rule in policy file.",
+                              "expires": null
+                            },
+                            "vulnerable_spec": ">=3.20.4,<=4.2.0"
+                          },
+                          {
+                            "id": "SFTY-20261020-34461",
+                            "ignored": {
+                              "code": "environment-dependency",
+                              "reason": "Ignored environment by rule in policy file.",
+                              "expires": null
+                            },
+                            "vulnerable_spec": ">=3.32.6,<=4.2.0"
+                          },
+                          {
+                            "id": "SFTY-20261020-13394",
+                            "ignored": {
+                              "code": "environment-dependency",
+                              "reason": "Ignored environment by rule in policy file.",
+                              "expires": null
+                            },
+                            "vulnerable_spec": ">=3.22.0,<=4.2.0"
+                          },
+                          {
+                            "id": "SFTY-20261020-91319",
+                            "ignored": {
+                              "code": "environment-dependency",
+                              "reason": "Ignored environment by rule in policy file.",
+                              "expires": null
+                            },
+                            "vulnerable_spec": ">=3.22.0,<=4.2.0"
+                          },
+                          {
+                            "id": "SFTY-20261020-81101",
+                            "ignored": {
+                              "code": "environment-dependency",
+                              "reason": "Ignored environment by rule in policy file.",
+                              "expires": null
+                            },
+                            "vulnerable_spec": "<=4.2.0"
+                          },
+                          {
+                            "id": "SFTY-20261017-72390",
+                            "ignored": {
+                              "code": "environment-dependency",
+                              "reason": "Ignored environment by rule in policy file.",
+                              "expires": null
+                            },
+                            "vulnerable_spec": ">=3.10.0,<=4.2.0"
+                          },
+                          {
+                            "id": "SFTY-20261017-54654",
+                            "ignored": {
+                              "code": "environment-dependency",
+                              "reason": "Ignored environment by rule in policy file.",
+                              "expires": null
+                            },
+                            "vulnerable_spec": ">=3.30.0,<=4.2.0"
+                          },
+                          {
+                            "id": "SFTY-20261017-57659",
+                            "ignored": {
+                              "code": "environment-dependency",
+                              "reason": "Ignored environment by rule in policy file.",
+                              "expires": null
+                            },
+                            "vulnerable_spec": ">=3.30.0,<=4.2.0"
+                          },
+                          {
+                            "id": "SFTY-20261020-25530",
+                            "ignored": {
+                              "code": "environment-dependency",
+                              "reason": "Ignored environment by rule in policy file.",
+                              "expires": null
+                            },
+                            "vulnerable_spec": ">=3.30.0,<=4.2.0"
+                          },
+                          {
+                            "id": "SFTY-20261020-11422",
+                            "ignored": {
+                              "code": "environment-dependency",
+                              "reason": "Ignored environment by rule in policy file.",
+                              "expires": null
+                            },
+                            "vulnerable_spec": ">=3.20.4,<=4.0.8"
+                          },
+                          {
+                            "id": "SFTY-20261023-10299",
+                            "ignored": {
+                              "code": "environment-dependency",
+                              "reason": "Ignored environment by rule in policy file.",
+                              "expires": null
+                            },
+                            "vulnerable_spec": ">=3.29.0,<=4.2.0"
+                          }
+                        ],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "h11",
+                  "specifications": [
+                    {
+                      "raw": "h11==0.16.0",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "httpcore",
+                  "specifications": [
+                    {
+                      "raw": "httpcore==1.0.9",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "httpx",
+                  "specifications": [
+                    {
+                      "raw": "httpx==0.28.1",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "idna",
+                  "specifications": [
+                    {
+                      "raw": "idna==3.20",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "iniconfig",
+                  "specifications": [
+                    {
+                      "raw": "iniconfig==2.3.1",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "jinja2",
+                  "specifications": [
+                    {
+                      "raw": "jinja2==3.1.6",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "joblib",
+                  "specifications": [
+                    {
+                      "raw": "joblib==1.6.0",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "joserfc",
+                  "specifications": [
+                    {
+                      "raw": "joserfc==1.8.0",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "license_expression",
+                  "specifications": [
+                    {
+                      "raw": "license_expression==30.4.4",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "mando",
+                  "specifications": [
+                    {
+                      "raw": "mando==0.7.1",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "markdown_it_py",
+                  "specifications": [
+                    {
+                      "raw": "markdown_it_py==4.3.0",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "markupsafe",
+                  "specifications": [
+                    {
+                      "raw": "markupsafe==3.0.4",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "marshmallow",
+                  "specifications": [
+                    {
+                      "raw": "marshmallow==4.4.0",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "mdurl",
+                  "specifications": [
+                    {
+                      "raw": "mdurl==0.1.2",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "mock",
+                  "specifications": [
+                    {
+                      "raw": "mock==5.2.0",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "msgpack",
+                  "specifications": [
+                    {
+                      "raw": "msgpack==1.2.4",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "nltk",
+                  "specifications": [
+                    {
+                      "raw": "nltk==3.10.4",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "packageurl_python",
+                  "specifications": [
+                    {
+                      "raw": "packageurl_python==0.17.6",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "packaging",
+                  "specifications": [
+                    {
+                      "raw": "packaging==26.3",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "pip",
+                  "specifications": [
+                    {
+                      "raw": "pip==26.2.1",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [
+                          {
+                            "id": "SFTY-20261020-17374",
+                            "ignored": {
+                              "code": "environment-dependency",
+                              "reason": "Ignored environment by rule in policy file.",
+                              "expires": null
+                            },
+                            "vulnerable_spec": ">=19.1,<26.2.2"
+                          }
+                        ],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "pip_api",
+                  "specifications": [
+                    {
+                      "raw": "pip_api==0.0.35",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "pip_audit",
+                  "specifications": [
+                    {
+                      "raw": "pip_audit==2.10.1",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "pip_requirements_parser",
+                  "specifications": [
+                    {
+                      "raw": "pip_requirements_parser==32.0.1",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "platformdirs",
+                  "specifications": [
+                    {
+                      "raw": "platformdirs==4.14.5",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "pluggy",
+                  "specifications": [
+                    {
+                      "raw": "pluggy==1.7.0",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "psutil",
+                  "specifications": [
+                    {
+                      "raw": "psutil==7.2.2",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "pycparser",
+                  "specifications": [
+                    {
+                      "raw": "pycparser==3.12",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "pydantic",
+                  "specifications": [
+                    {
+                      "raw": "pydantic==2.14.3",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "pydantic_core",
+                  "specifications": [
+                    {
+                      "raw": "pydantic_core==2.50.4",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "pygments",
+                  "specifications": [
+                    {
+                      "raw": "pygments==2.21.0",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "pyparsing",
+                  "specifications": [
+                    {
+                      "raw": "pyparsing==3.3.3",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "pyperclip",
+                  "specifications": [
+                    {
+                      "raw": "pyperclip==1.11.0",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "pytest",
+                  "specifications": [
+                    {
+                      "raw": "pytest==9.2.0",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "pytest_approvaltests",
+                  "specifications": [
+                    {
+                      "raw": "pytest_approvaltests==0.2.4",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "pyyaml",
+                  "specifications": [
+                    {
+                      "raw": "pyyaml==6.0.3",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "py_serializable",
+                  "specifications": [
+                    {
+                      "raw": "py_serializable==2.2.0",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "radon",
+                  "specifications": [
+                    {
+                      "raw": "radon==6.0.1",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "regex",
+                  "specifications": [
+                    {
+                      "raw": "regex==2026.11.9",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "requests",
+                  "specifications": [
+                    {
+                      "raw": "requests==2.34.2",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "rich",
+                  "specifications": [
+                    {
+                      "raw": "rich==15.0.0",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "ruamel_yaml",
+                  "specifications": [
+                    {
+                      "raw": "ruamel_yaml==0.19.1",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "safety",
+                  "specifications": [
+                    {
+                      "raw": "safety==3.8.1",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "safety_schemas",
+                  "specifications": [
+                    {
+                      "raw": "safety_schemas==0.0.16",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "shellingham",
+                  "specifications": [
+                    {
+                      "raw": "shellingham==1.5.4",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "six",
+                  "specifications": [
+                    {
+                      "raw": "six==1.17.0",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "sortedcontainers",
+                  "specifications": [
+                    {
+                      "raw": "sortedcontainers==2.4.0",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "soupsieve",
+                  "specifications": [
+                    {
+                      "raw": "soupsieve==4.1",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "stevedore",
+                  "specifications": [
+                    {
+                      "raw": "stevedore==5.9.1",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "tenacity",
+                  "specifications": [
+                    {
+                      "raw": "tenacity==9.2.1",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "testfixtures",
+                  "specifications": [
+                    {
+                      "raw": "testfixtures==11.0.0",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "tomli",
+                  "specifications": [
+                    {
+                      "raw": "tomli==2.5.0",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "tomli_w",
+                  "specifications": [
+                    {
+                      "raw": "tomli_w==1.2.0",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "tomlkit",
+                  "specifications": [
+                    {
+                      "raw": "tomlkit==0.15.2",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "tqdm",
+                  "specifications": [
+                    {
+                      "raw": "tqdm==4.70.1",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "truststore",
+                  "specifications": [
+                    {
+                      "raw": "truststore==0.10.5",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "typer",
+                  "specifications": [
+                    {
+                      "raw": "typer==0.25.1",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "typing_extensions",
+                  "specifications": [
+                    {
+                      "raw": "typing_extensions==4.16.0",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "typing_inspection",
+                  "specifications": [
+                    {
+                      "raw": "typing_inspection==0.4.5",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "urllib3",
+                  "specifications": [
+                    {
+                      "raw": "urllib3==2.8.0",
+                      "vulnerabilities": {
+                        "known_vulnerabilities": [],
+                        "remediation": null
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "location": "C:\\Users\\Pedro\\Documents\\VsCode\\Supermarket\\venv\\Lib\\site-packages\\stevedore\\example\\pyproject.toml",
+            "type": "pyproject.toml",
+            "categories": [
+              "python"
+            ],
+            "results": {
+              "dependencies": []
+            }
+          },
+          {
+            "location": "C:\\Users\\Pedro\\Documents\\VsCode\\Supermarket\\.venv\\Lib\\site-packages\\stevedore\\example\\pyproject.toml",
+            "type": "pyproject.toml",
+            "categories": [
+              "python"
+            ],
+            "results": {
+              "dependencies": []
+            }
+          },
+          {
+            "location": "C:\\Users\\Pedro\\Documents\\VsCode\\Supermarket\\.venv\\Lib\\site-packages\\stevedore\\example2\\pyproject.toml",
+            "type": "pyproject.toml",
+            "categories": [
+              "python"
+            ],
+            "results": {
+              "dependencies": []
+            }
+          },
+          {
+            "location": "C:\\Users\\Pedro\\Documents\\VsCode\\Supermarket\\venv\\Lib\\site-packages\\stevedore\\example2\\pyproject.toml",
+            "type": "pyproject.toml",
+            "categories": [
+              "python"
+            ],
+            "results": {
+              "dependencies": []
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
