@@ -4,7 +4,7 @@
 - **Data:** 25/11/2026
 - **Código original:** `ff9b330` (`origin/main`)
 - **Código atual analisado:** `5b73a5e` (`develop`, integração até o PR #18)
-- **Responsável:** João
+- **Responsável:** João Pedro Silva
 
 ## 1. Contexto
 
@@ -42,17 +42,33 @@ detalhada da suíte atual está em
 Os trechos da coluna “Exemplo original” são do commit `ff9b330`; as referências de
 linha se referem a esse código.
 
-| Arquivo e linha original | Exemplo original | Problema e efeito | Situação após a refatoração |
-|---|---|---|---|
-| `shopping_cart.py:30-68` | `def handle_offers(self, receipt, offers, catalog):` seguido por vários `if offer.offer_type == ...` | Um método concentra a seleção e o cálculo de todas as ofertas. A complexidade C (13) aumenta o número de caminhos a entender e testar; cada nova oferta exigia alterar o carrinho, contrariando OCP. | O carrinho delega o cálculo às estratégias obtidas por `OfferStrategyFactory`. `handle_offers` caiu para A (4), e a lógica de combos está em `src/offers/combo_promotion.py`. A fábrica e as estratégias têm testes isolados. |
-| `shopping_cart.py:6-28` e `30-68` | `ShoppingCart` guarda `_items` e `_product_quantities` e também calcula descontos em `handle_offers`. | A classe tem motivos distintos para mudar: armazenamento do carrinho e regras promocionais, contrariando SRP. | O carrinho ainda mantém os itens e coordena a aplicação das ofertas antigas, mas cada regra antiga fica em uma estratégia. O cálculo do combo também está separado. |
-| `shopping_cart.py:31, 38-52, 55, 64` | `for p ...`, `x = 1`, `x = 3`, `x = 2`, `x = 5` e `number_of_x` | Nomes curtos e valores numéricos espalhados tornam a regra mais lenta de ler e podem ocultar a intenção. | As regras foram distribuídas em classes nomeadas (`ThreeForTwoStrategy`, `TwoForAmountStrategy`, etc.) e usam nomes mais explicativos como `groups` e `charged`. Os tamanhos de grupo 2, 3 e 5 continuam como valores numéricos locais à estratégia; extraí-los para constantes nomeadas é uma melhoria possível, não requisito para a correção funcional. |
-| `shopping_cart.py:45` | `offer.argument * (quantity_as_int / x)` | A divisão real na promoção “2 por X” produz o defeito D3: 3 unidades a R$ 10,00 com “2 por 15” resultam em R$ 32,50. | A fórmula foi preservada em `TwoForAmountStrategy` e é coberta por teste de caracterização. A equipe documentou a decisão; uma correção comercial exigiria decisão do grupo e alteração separada. |
-| `shopping_cart.py:45-65` | Cálculos distintos para “2 por X” e “5 por X” dentro do mesmo método. | Regras de promoções diferentes estão misturadas e são difíceis de testar isoladamente; uma alteração pode afetar outra oferta. | Cada promoção legada tem estratégia própria. A similaridade visual não justificou unificar regras com resultados diferentes, especialmente por causa do D3. |
-| `teller.py:28-29` | `return self.catalog.products.get(name, None)` | O caixa depende de um atributo interno que existia no catálogo falso usado pelos testes, e não fazia parte do contrato comum: fragilidade de substituição (LSP). | `Teller.product_with_name` agora chama `CatalogReaderPort.product_by_name`. O catálogo declara a operação e o teste cobre produto encontrado e ausente. |
-| `catalog.py:4-8` | `raise Exception("cannot be called from a unit test - it accesses the database")` | A implementação de catálogo do kata é um esqueleto que lança exceções genéricas; seu contrato e implementação de persistência não estão concluídos. Isso limita testes de integração com banco. | As interfaces `CatalogReaderPort` e `CatalogWriterPort` tornam explícitas as operações esperadas. `SupermarketCatalog` continua sendo um placeholder sem banco; os testes usam `FakeCatalog`, sem alegar que a persistência real foi implementada. |
-| `tests/test_supermarket.py` | A suíte original continha um teste. | Um único caso não protegia suficientemente as ofertas, o recibo nem a nova regra contra regressões. | A suíte integrada atual tem 116 testes aprovados. A equipe também compara os 34 testes de caracterização no original e no refatorado. |
-| `requirements.txt` | Dependências sem versões fixadas. | Uma instalação futura pode resolver versões diferentes, reduzindo a reprodutibilidade do ambiente. | A lista foi mantida sem novas dependências de aplicação. O pinning continua sendo uma decisão documental/operacional pendente; Radon foi instalado apenas no ambiente virtual local para esta medição, não foi adicionado a `requirements.txt`. |
+## 3. Achados
+
+Os trechos da coluna **Trecho original** foram extraídos do commit `ff9b330` (`origin/main`), e as referências de linha correspondem a essa versão.
+
+### 3.1 Carrinho e Regras de Promoção (`shopping_cart.py`)
+
+| Arquivo e linha | Trecho original | Problema e efeito | Situação após a refatoração |
+| :--- | :--- | :--- | :--- |
+| `shopping_cart.py:30-68` | `def handle_offers(self, receipt, offers, catalog):` seguido de cadeia de `if offer.offer_type == ...` | **Problema:** método longo concentrando seleção e cálculo de todas as ofertas (complexidade **C = 13**).<br>**Efeito:** viola **OCP** (cada nova oferta exige editar o carrinho) e dificulta testes unitários isolados. | O carrinho delega o cálculo às estratégias obtidas via `OfferStrategyFactory`. A complexidade de `handle_offers` caiu para **A (4)**, a regra de combos foi isolada em `src/offers/combo_promotion.py` e cada componente possui testes próprios. |
+| `shopping_cart.py:6-28` e `30-68` | Atributos `_items` / `_product_quantities` na mesma classe de `handle_offers` | **Problema:** `ShoppingCart` armazena itens e também executa regras de desconto.<br>**Efeito:** viola **SRP** ao acumular duas razões distintas para mudar. | O carrinho mantém o estado dos itens e coordena a execução, enquanto cada regra legada foi extraída para sua própria classe de estratégia e o combo para módulo dedicado. |
+| `shopping_cart.py:31, 38-52, 55, 64` | `for p ...`, `x = 1`, `x = 3`, `x = 2`, `x = 5`, `number_of_x` | **Problema:** identificadores abreviados (`p`, `x`) e números mágicos espalhados (`2`, `3`, `5`, `100`).<br>**Efeito:** leitura lenta e regras de negócio implícitas no cálculo. | As regras foram encapsuladas em classes descritivas (`ThreeForTwoStrategy`, `TwoForAmountStrategy`, etc.) com variáveis claras (`groups`, `charged`). Os tamanhos de grupo (`2`, `3`, `5`) permanecem locais às respectivas estratégias. |
+| `shopping_cart.py:45` | `offer.argument * (quantity_as_int / x)` | **Problema:** divisão real (`/`) em vez de inteira (`//`) na oferta "2 por X" (**defeito D3**).<br>**Efeito:** 3 itens de R$ 10,00 na oferta "2 por 15" totalizam R$ 32,50 em vez de R$ 25,00. | Fórmula preservada intencionalmente em `TwoForAmountStrategy` e protegida por teste de caracterização para evitar regressão comportamental; eventual correção comercial exige decisão separada. |
+| `shopping_cart.py:45-65` | Fórmulas paralelas para `SpecialOfferType.TWO_FOR_AMOUNT` e `FIVE_FOR_AMOUNT` | **Problema:** cálculos semelhantes para "2 por X" e "5 por X" duplicados no mesmo método.<br>**Efeito:** acoplamento entre ofertas distintas e risco de efeito colateral ao alterar uma regra. | Cada oferta legada possui estratégia independente, evitando unificação forçada de regras que têm comportamentos diferentes (especialmente devido ao defeito D3). |
+
+### 3.2 Catálogo e Contratos (`teller.py` e `catalog.py`)
+
+| Arquivo e linha | Trecho original | Problema e efeito | Situação após a refatoração |
+| :--- | :--- | :--- | :--- |
+| `teller.py:28-29` | `return self.catalog.products.get(name, None)` | **Problema:** `Teller.product_with_name` acessa o atributo interno `products`, existente apenas no `FakeCatalog`.<br>**Efeito:** viola **LSP** e quebra a substituição por outras implementações de catálogo. | `Teller.product_with_name` passou a invocar o método de contrato `CatalogReaderPort.product_by_name`, com cobertura de testes para produto encontrado e ausente. |
+| `catalog.py:4-8` | `raise Exception("cannot be called from a unit test - it accesses the database")` | **Problema:** classe concreta (`SupermarketCatalog`) que apenas lança exceções genéricas.<br>**Efeito:** contrato implícito e impossibilidade de testar persistência de forma desacoplada. | Contratos formalizados nas interfaces `CatalogReaderPort` e `CatalogWriterPort`. `SupermarketCatalog` permanece como esqueleto sem banco real, enquanto os testes utilizam `FakeCatalog`. |
+
+### 3.3 Suíte de Testes e Ambiente (`tests/` e `requirements.txt`)
+
+| Arquivo e linha | Trecho original | Problema e efeito | Situação após a refatoração |
+| :--- | :--- | :--- | :--- |
+| `tests/test_supermarket.py` | Arquivo único contendo apenas 1 caso de teste sem ofertas | **Problema:** ausência de cobertura sobre ofertas, recibos e casos de borda.<br>**Efeito:** refatorar sem rede de segurança contra regressões. | Suíte expandida para **116 testes aprovados**, incluindo **34 testes de caracterização** validados tanto no código original quanto no refatorado. |
+| `requirements.txt` | Dependências listadas sem pinagem de versão | **Problema:** ausência de versões fixas para os pacotes declarados.<br>**Efeito:** ambiente não reprodutível em instalações futuras. | Nenhuma nova dependência de aplicação foi adicionada (`radon` foi usado apenas localmente). A fixação de versões permanece registrada como pendência operacional. |
 
 ## 4. Métricas de complexidade
 
